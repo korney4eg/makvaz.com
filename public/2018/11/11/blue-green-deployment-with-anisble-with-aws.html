@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Makvaz  | Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 1. Blue-Green Deployment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="http://0.0.0:4000/css/blog.css" />
+    
+</head>
+<body>
+
+    
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="http://0.0.0:4000">Home</a>
+            <a class="navbar-item" href="http://0.0.0:4000">About me</a>
+        </div>
+    </nav>
+    
+
+    
+    <section class="hero is-info is-medium">
+        <div class="hero-body" style="background-image: url(http://0.0.0:4000/assets/img/header-pic.jpeg);">
+            <div class="container has-text-centered">
+                <br>
+                <h1 class="title is-size-1">
+                    
+                        Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 1. Blue-Green Deployment
+                    
+                </h1>
+            </div>
+
+<p class="subtitle is-size-6 has-text-grey-light" align="center">
+    11.11.2018 &middot;
+</p>
+
+        </div>
+    </section>
+
+
+<div class="container">
+    <div class="section">
+    
+<div class="tags">
+
+    <span class="tag"><a href="http://0.0.0:4000/tags/devops">devops</a></span>
+
+    <span class="tag"><a href="http://0.0.0:4000/tags/aws">aws</a></span>
+
+    <span class="tag"><a href="http://0.0.0:4000/tags/ansible">ansible</a></span>
+
+    <span class="tag"><a href="http://0.0.0:4000/tags/blue-green-deployment">blue-green deployment</a></span>
+
+</div>          
+<div class="columns">
+    <div class="column is-9">
+        <div class="tile is-child box">
+            <div class="content">
+                <p>В этой статье я хочу показать простейший способ, как организовать непрерывное обновление сервиса в AWS при помощи <a href="https://www.ansible.com/"> Ansible </a>.</p>
+
+<p>Для примера будем разворачивать <a href="https://github.com/korney4eg/birthday-checker"> сервис </a>, который позволяет узнать сколько осталось дней до дня рождения пользователя в этом году. В качестве базы данных будет использован RDS с MySQL, в качестве лоад балансера - Elastic Load Balancer.</p>
+
+<p><em>Предполагается, что читатель знает азы работы с ansible и AWS, они установлены и настроены.</em></p>
+
+<h2 id="blue-green-deployment">Blue-Green Deployment</h2>
+
+<p>Идея заключается в следующем:</p>
+
+<ol>
+<li><p>У нас есть несколько виртуальных машин на которых работает приложение версии 2.14, назовём эти машины - синими(Blue). Запросы на них приходят от пользователей через лоад балансер.
+<img src="/assets/img/blue-green-deployment-with-ansible/blue-green-1.png" alt="blue-green-1" /></p></li>
+
+<li><p>Создаём новые виртуальные машины с приложением версии 2.15, они у нас будут зелёными(Green).
+<img src="/assets/img/blue-green-deployment-with-ansible/blue-green-2.png" alt="blue-green-2" /></p></li>
+
+<li><p>Подключаем зелёные виртуалки к лоад балансеру. Очень важно убедиться в том, что работают как синие виртуалки, так и зеленые. То есть можно открыть приложение версии 2.14, так и 2.15.
+<img src="/assets/img/blue-green-deployment-with-ansible/blue-green-3.png" alt="blue-green-3" /></p></li>
+
+<li><p>Отключаем синие виртуалки от балансера.
+<img src="/assets/img/blue-green-deployment-with-ansible/blue-green-4.png" alt="blue-green-4" /></p></li>
+
+<li><p>По прошествии какого-то времени, можно удалять синие виртуалки. Подождать нужно на всякий случай, чтобы при необходимости можно было легко откатиться к старой версии.</p></li>
+</ol>
+
+<p>Этот вид развёртывания неприемлим, если есть калечещие измениния в базе данных при переходе на новую версию приложения.
+Цвета необязательно должны быть именно синий и зелёный, можно использовать любой другой.</p>
+
+<h2 id="архитектура">Архитектура</h2>
+
+<p>В общем виде архитектура выглядит следующим образом:</p>
+
+<p><img src="/assets/img/blue-green-deployment-with-ansible/application_diagramm.png" alt="Архитектура" /></p>
+
+<p>Создается виртуальное приватное облако(Virtual Private Cloud, <strong>VPC</strong>), в нём 3 подсети (subnets). Первая подсеть публичная(<strong>App subnet</strong>), в ней будут запускаться виртуалки с приложением(<strong>EC2 instances</strong>) и лоад балансер(<strong>ELB</strong>), доступный из интернета. Две другие - приватные, в них будет работать база данныхi(<strong>DB subnet 1</strong>, <strong>DB subnet 2</strong>). Так же добавляем Internet Gateway, через который виртуалки могут достукиваться в интернет.</p>
+
+<p>Создаются правила Security rules для:</p>
+
+<ol>
+<li><p>Лоад балансера - открыт 80-й порт для всех.</p></li>
+
+<li><p>Апликейшн сервера - открыт 22-й порт для ssh соединения, 8001-й для лоад балансера.</p></li>
+
+<li><p>Сервера баз данных - открыт 3306-й порт для апликейшн серверов.</p></li>
+</ol>
+
+<p>Для того, чтобы развернуть сервис баз данных, сначала нужно создать группу сетей базы данных(<a href="https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Subnets">DB Subnets group</a>), которая включает в себя 2 подсети. Делается это для того, чтобы можно было настроить базу данных высокой доступности. В этом примере этого не используется, но я очень рекоммендую. Дальше создаётся сервис базы данных на MySQL 5.7.</p>
+
+<h2 id="реализация">Реализация</h2>
+
+<p>По <a href="https://github.com/korney4eg/blue-green-deployment-ansible/blob/master/provision.yaml"> ссылке </a> можно посмотреть плейбук полностью. Дальше будут рассмотрены задания отвечающие только за blue-green deployment.</p>
+
+<h3 id="используемые-переменные">Используемые переменные</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    region: eu-west-<span style="color:#ae81ff">1</span>
+    db_name: myTestDB
+    db_user: myuser
+    db_password: <span style="color:#ae81ff">12345678</span>
+    version: <span style="color:#ae81ff">2.15</span>
+    instance_num: <span style="color:#ae81ff">1</span></code></pre></div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>region:</strong> - регион AWS, в этом примере используется регион в Ирландии</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>db_name:</strong> - название базы данных</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>db_user:</strong> - имя пользователя бызы данных</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>db_password:</strong> - пароль к базе данных</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>version:</strong> - версия приложения</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>instance_num:</strong> - количество инстансов, на которых будет работать приложение.</p>
+
+<h3 id="1-проверка-были-ли-запущены-виртуалки-blue-раньше">1. Проверка, были ли запущены виртуалки(Blue) раньше</h3>
+
+<p>Перед тем, как создавать новые виртуальные машины, убедимся, сколько их уже было создано и запущено.</p>
+
+<p>Собираем данные о виртуалках с таким же тегом, и потом создаём список из айдишников найденных виртуалок.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - set_fact:
+        old_instance_ids: []
+        new_instance_ids: []
+
+    - name: Get old instances
+      ec2_remote_facts:
+        filters:
+          vpc_id: <span style="color:#e6db74">&#34;{{ vpc.vpc.id }}&#34;</span>
+          instance-state-name: running
+          <span style="color:#e6db74">&#34;tag:Name&#34;</span>: MyTestApp
+        region: <span style="color:#e6db74">&#34;{{ region }}&#34;</span>
+      register: old_instances
+
+    - name: get old instances ids
+      set_fact:
+        old_instance_ids: <span style="color:#e6db74">&#34;{{old_instance_ids}} + [&#39;{{ item.id }}&#39;]&#34;</span>
+      loop: <span style="color:#e6db74">&#34;{{old_instances.instances}}&#34;</span></code></pre></div>
+<h3 id="2-создаём-виртуалки-с-новой-версией-приложения-green">2. Создаём виртуалки с новой версией приложения (Green)</h3>
+
+<h4 id="2-1-шаблон-скрипта-запуска-приложения">2.1 Шаблон скрипта запуска приложения</h4>
+
+<p>В AWS можно прописать скрипт, который будет выполняться сразу после создания виртуальной машины. Для этого создаём файл <code>setup.sh.j2</code>, со следующим содержанием:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>yum install python mysql57 git telnet nginx -y
+
+useradd serv_runner
+
+cd /opt/
+
+git clone https://github.com/korney4eg/birthday-checker person_api
+chown serv_runner:serv_runner person_api -R
+cd person_api/
+pip install -r requirements.txt
+
+
+<span style="color:#75715e"># create config file</span>
+echo <span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">[database]
+</span><span style="color:#e6db74">host = {{ rds.instance.endpoint }}
+</span><span style="color:#e6db74">port = 3306
+</span><span style="color:#e6db74">database = {{ db_name }}
+</span><span style="color:#e6db74">user = {{ db_user }}
+</span><span style="color:#e6db74">password = {{ db_password }}&#39;</span> &gt; /opt/person_api/.db_config.ini
+
+<span style="color:#75715e"># nginx configuration</span>
+echo <span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">server {
+</span><span style="color:#e6db74">    listen      8081  default_server;
+</span><span style="color:#e6db74">    location = /healthcheck {
+</span><span style="color:#e6db74">        add_header Content-Type text/plain;
+</span><span style="color:#e6db74">    	return 200 &#39;</span><span style="color:#f92672">{{</span> version <span style="color:#f92672">}}</span><span style="color:#e6db74">&#39;;
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">    location = /stack {
+</span><span style="color:#e6db74">        add_header Content-Type text/plain;
+</span><span style="color:#e6db74">    	return 200 &#39;</span><span style="color:#66d9ef">$(</span>hostname<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#39;;
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">    location /{
+</span><span style="color:#e6db74">        proxy_pass http://127.0.0.1:8080;
+</span><span style="color:#e6db74">        proxy_set_header Host $host;
+</span><span style="color:#e6db74">        proxy_set_header X-Real-IP $remote_addr;
+</span><span style="color:#e6db74">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span><span style="color:#e6db74">        proxy_set_header X-Forwarded-Proto $scheme;
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">}&#39;</span> &gt; /etc/nginx/conf.d/virtual.conf
+service nginx restart
+
+su - serv_runner -c <span style="color:#e6db74">&#34;cd /opt/person_api/ &amp;&amp; nohup python main.py &gt;&gt; /tmp/person_api.log 2&gt;&amp;1 &amp;&#34;</span></code></pre></div>
+<p>Этот скрипт устанавливает все зависимости, скачивает приложение, настраивает и запускает.
+Шаблон используется для того, чтобы при смене одного из параметров не нужно было менять файл скрипта, он настраивается автоматически.</p>
+
+<h4 id="2-2-создаём-новые-виртуалки-green">2.2. Создаём новые виртуалки(Green)</h4>
+
+<p>Для создания виртуальных машин нужно указать несколько параметров, одним из таких является &ldquo;пара ключей&rdquo;(ec2 keypair), другим скрипт запуска(user_data), его мы создали на шаге 2.1.</p>
+
+<p>Также записываем в переменную _new_instance<em>ids</em> айдишники новых инстансов(витруалок).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - name: create a new ec2 key pair
+      ec2_key:
+        name: provisioner
+        region: <span style="color:#e6db74">&#34;{{ region }}&#34;</span>
+        key_material: <span style="color:#e6db74">&#34;{{ lookup(&#39;file&#39;, &#39;~/.ssh/id_rsa.pub&#39;) }}&#34;</span>
+      register: keypair
+
+    - name: Creating database coniguration template
+      template:
+        src: ./setup.sh.j2
+        dest: ./setup.sh
+
+    - name: Create EC2 server
+      ec2:
+        image: ami-41505fab
+        wait: yes
+        instance_type: t2.micro
+        region: <span style="color:#e6db74">&#34;{{ region }}&#34;</span>
+        group_id: <span style="color:#e6db74">&#34;{{ app_sg.group_id }}&#34;</span>
+        vpc_subnet_id: <span style="color:#e6db74">&#34;{{ app_subnet.subnet.id }}&#34;</span>
+        key_name: <span style="color:#e6db74">&#34;{{ keypair.key.name  }}&#34;</span>
+        count_tag: <span style="color:#e6db74">&#34;{{ old_instance_ids|length + instance_num  |int}}&#34;</span>
+        user_data: <span style="color:#e6db74">&#34;{{ lookup(&#39;file&#39;, &#39;./setup.sh&#39;) }}&#34;</span>
+        exact_count: <span style="color:#e6db74">&#34;{{ old_instance_ids|length + instance_num  |int}}&#34;</span>
+        instance_tags:
+          Environment: MyTest
+          Name: MyTestApp
+      register: ec2
+
+    - name: get new instances ids
+      set_fact:
+        new_instance_ids: <span style="color:#e6db74">&#34;{{ec2.instance_ids}}&#34;</span>
+        all_instances: <span style="color:#e6db74">&#34;{{old_instance_ids}}+{{new_instance_ids}}&#34;</span>
+
+    - name: get new instances ids
+      set_fact:
+        all_instances: <span style="color:#e6db74">&#34;{{old_instance_ids}}+{{new_instance_ids}}&#34;</span></code></pre></div>
+<h3 id="3-подключаем-новые-инстансы-green-к-лоад-балансеру">3. Подключаем новые инстансы(Green) к лоад балансеру</h3>
+
+<p>В параметр <strong>instance_ids</strong> прописываем айдишники новых виртуалок.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - name: Create ELB with all instances
+      ec2_elb_lb:
+        name: <span style="color:#e6db74">&#34;app-lb&#34;</span>
+        state: present
+        security_group_ids:
+          - <span style="color:#e6db74">&#34;{{ elb_sg.group_id }}&#34;</span>
+        region: <span style="color:#e6db74">&#34;{{ region }}&#34;</span>
+        instance_ids: <span style="color:#e6db74">&#34;{{ new_instance_ids }}&#34;</span>
+        subnets:
+          - <span style="color:#e6db74">&#34;{{ app_subnet.subnet.id}}&#34;</span>
+        listeners:
+          - protocol: http
+            load_balancer_port: <span style="color:#ae81ff">80</span>
+            instance_port: <span style="color:#ae81ff">8081</span>
+        health_check:
+            ping_protocol: http <span style="color:#75715e"># options are http, https, ssl, tcp</span>
+            ping_port: <span style="color:#ae81ff">8081</span>
+            ping_path: <span style="color:#e6db74">&#34;/healthcheck&#34;</span> <span style="color:#75715e"># not required for tcp or ssl</span>
+            response_timeout: <span style="color:#ae81ff">15</span> <span style="color:#75715e"># seconds</span>
+            interval: <span style="color:#ae81ff">30</span> <span style="color:#75715e"># seconds</span>
+            unhealthy_threshold: <span style="color:#ae81ff">2</span>
+            healthy_threshold: <span style="color:#ae81ff">2</span>
+        tags:
+          Environment: MyTest
+
+    - name: Waiting for instances to become ready
+      ec2_elb_facts:
+        region: <span style="color:#e6db74">&#34;{{ region }}&#34;</span>
+        names: app-lb
+      register: elb_facts
+      until: elb_facts.elbs[<span style="color:#ae81ff">0</span>].instances_inservice_count  == all_instances|length
+      retries: <span style="color:#ae81ff">10</span>
+      delay: <span style="color:#ae81ff">15</span></code></pre></div>
+<p>Так как установка программ занимает какое-то время, то ждём, пока все инстансы увидит лоад балансер как работающие.</p>
+
+<h3 id="4-отключаем-старые-виртуалки-blue-от-балансировщика">4. Отключаем старые виртуалки(Blue) от балансировщика</h3>
+
+<p>После того, когда новые виртуалки запустились, старые можно смело отключать от балансера.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - name: Remove old instances from ELB
+      ec2_elb_lb:
+        name: <span style="color:#e6db74">&#34;app-lb&#34;</span>
+        state: present
+        security_group_ids:
+          - <span style="color:#e6db74">&#34;{{ elb_sg.group_id }}&#34;</span>
+        region: <span style="color:#e6db74">&#34;{{ region }}&#34;</span>
+        instance_ids: <span style="color:#e6db74">&#34;{{ new_instance_ids }}&#34;</span>
+        subnets:
+          - <span style="color:#e6db74">&#34;{{ app_subnet.subnet.id}}&#34;</span>
+        listeners:
+          - protocol: http
+            load_balancer_port: <span style="color:#ae81ff">80</span>
+            instance_port: <span style="color:#ae81ff">8081</span>
+        health_check:
+            ping_protocol: http <span style="color:#75715e"># options are http, https, ssl, tcp</span>
+            ping_port: <span style="color:#ae81ff">8081</span>
+            ping_path: <span style="color:#e6db74">&#34;/healthcheck&#34;</span> <span style="color:#75715e"># not required for tcp or ssl</span>
+            response_timeout: <span style="color:#ae81ff">15</span> <span style="color:#75715e"># seconds</span>
+            interval: <span style="color:#ae81ff">30</span> <span style="color:#75715e"># seconds</span>
+            unhealthy_threshold: <span style="color:#ae81ff">2</span>
+            healthy_threshold: <span style="color:#ae81ff">2</span>
+        purge_instance_ids: <span style="color:#66d9ef">true</span>
+      when: old_instance_ids.<span style="color:#ae81ff">0</span> is defined</code></pre></div>
+<h3 id="5-если-всё-хорошо-работает-какое-то-время-удаляем-старые-виртуалки-blue">5. Если всё хорошо работает какое-то время, удаляем старые виртуалки(Blue)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - name: Terminate instances that were previously launched
+      ec2:
+        state: <span style="color:#e6db74">&#39;absent&#39;</span>
+        instance_ids: <span style="color:#e6db74">&#39;{{ old_instance_ids }}&#39;</span>
+        region: <span style="color:#e6db74">&#34;{{ region }}&#34;</span>
+        group_id: <span style="color:#e6db74">&#34;{{ app_sg.group_id }}&#34;</span>
+        vpc_subnet_id: <span style="color:#e6db74">&#34;{{ app_subnet.subnet.id }}&#34;</span>
+      when: old_instance_ids.<span style="color:#ae81ff">0</span> is defined</code></pre></div>
+<h2 id="запускаем-ansible">Запускаем ansible</h2>
+
+<p>Ещё раз продублирую <a href="https://github.com/korney4eg/blue-green-deployment-ansible/blob/master/provision.yaml"> ссылку </a> на полный плейбук.</p>
+
+<p>Проще всего будет склонировать весь репозиторий и запустить скрипт:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/korney4eg/blue-green-deployment-ansible
+cd blue-green-deployment-ansible/
+ansible-playbook provision.yaml  -v</code></pre></div>
+<p>Чтобы вам долго не мучаться с удалением только что создых ресурсов я подготовил скрипт, который удаляет всё в обратном порядке, для этого нужно выполнить следующую команду:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ansible-playbook destroy.yaml  -v</code></pre></div>
+<h2 id="заключение">Заключение</h2>
+
+<p>На этом примере был рассмотрен один из видов беспрерывного развёртывания (Zero-downtime deployment) - цветное(Blue-Green) развёртывание. У этого способа есть недостаток - в какой-то момент времени храняться как синие, так и зелёные виртуалки, что ненамного увеличивает стоимость.</p>
+
+<p>Как можно было сделать по другому:</p>
+
+<ol>
+<li>Использовать Kubernetes или другую систему оркестрации. Был выбран именно текущий способ, чтобы показать на низком уровне как можно всё организовать самостоятельно.</li>
+<li>Использовать Autoscaling Groups. Во-первых, ASG загружается дольше, а значит его дольше зупускать и отлаживать (для продакшена я рекоммендую использовать именно ASG), во-вторых, опять-таки на инстансах всё наглядней показано.</li>
+<li>Использовать любой другой Configuration Manager. Ansible в этом примере был выбран как более читабельный. Другие примеры развёртки тоже будут использовать Ansible.</li>
+</ol>
+            </div>
+        </div>
+    </div>
+    <div class="column is-3">
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Tags</h1>
+        <div class="tags">
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/ansible">ansible</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/aws">aws</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/bitwarden">bitwarden</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/blue-green-deployment">blue-green-deployment</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/canary-deployment">canary-deployment</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/chef">chef</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/ci/cd">ci/cd</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/deployment">deployment</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/devops">devops</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/git">git</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/howto">howto</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/opensource">opensource</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/passwordmanager">passwordmanager</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/tmux">tmux</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/vim">vim</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8">книги</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D0%BA%D1%83%D1%80%D1%81%D1%8B">курсы</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D0%BC%D1%8B%D1%81%D0%BB%D0%B8">мысли</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D1%81%D0%B0%D0%B9%D1%82">сайт</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D0%B8%D1%8F">сертификаия</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5">техническое</a></span>
+        
+        </div>          
+    </div>
+</div><br>
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Recent posts</h1>
+        
+            <h1><a href="http://0.0.0:4000/2018/12/17/cources-recommendations.html">Где помогают освоить магию командной строки. Рекомендую курсы git и tmux</a></h1>
+            <time class="has-text-grey-light is-size-7">17.12.2018</time>
+        
+            <h1><a href="http://0.0.0:4000/2018/12/10/password-managers.html">Выбираем open source менеджер паролей</a></h1>
+            <time class="has-text-grey-light is-size-7">10.12.2018</time>
+        
+            <h1><a href="http://0.0.0:4000/2018/12/03/canary-deployment-with-ansible-on-aws.html">Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 3. Canary Deployment</a></h1>
+            <time class="has-text-grey-light is-size-7">03.12.2018</time>
+        
+            <h1><a href="http://0.0.0:4000/2018/11/26/rolling-deployment-with-anisble-with-aws.html">Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 2. Rolling Deployment</a></h1>
+            <time class="has-text-grey-light is-size-7">26.11.2018</time>
+        
+            <h1><a href="http://0.0.0:4000/2018/11/11/blue-green-deployment-with-anisble-with-aws.html">Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 1. Blue-Green Deployment</a></h1>
+            <time class="has-text-grey-light is-size-7">11.11.2018</time>
+        
+    </div>
+</div>
+    
+<br>
+                
+  
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Related posts</h1>
+      
+      
+            <h1><a href="http://0.0.0:4000/2018/12/03/canary-deployment-with-ansible-on-aws.html">Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 3. Canary Deployment</a></h1>
+            <time class="has-text-grey-light is-size-7">03.12.2018</time>
+      
+            <h1><a href="http://0.0.0:4000/2018/11/26/rolling-deployment-with-anisble-with-aws.html">Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 2. Rolling Deployment</a></h1>
+            <time class="has-text-grey-light is-size-7">26.11.2018</time>
+      
+            <h1><a href="http://0.0.0:4000/2018/08/25/aws-certification-preparation.html">Как подготовиться к сдаче на сертификат &#34;AWS Certified SysOps Administrator – Associate&#34;</a></h1>
+            <time class="has-text-grey-light is-size-7">25.08.2018</time>
+      
+            <h1><a href="http://0.0.0:4000/2018/05/21/chef-provisioning-aws-folder-structure.html">Зачем chef provisioning пересоздал всё в AWS и как это поправить.</a></h1>
+            <time class="has-text-grey-light is-size-7">21.05.2018</time>
+      
+    </div>
+</div>
+
+    
+<br>
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Archives</h1>
+        
+            <a href="http://0.0.0:4000/archives/2018">2018</a> (12)<br>
+        
+            <a href="http://0.0.0:4000/archives/2017">2017</a> (2)<br>
+        
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+<footer class="footer has-background-grey-darker has-text-white">
+    <div class="content has-text-centered">
+        <p>
+            <span class="icon is-large"><a href="https://twitter.com/" class="mysocial"><i class="fab fa-twitter fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://www.youtube.com/" class="mysocial"><i class="fab fa-youtube fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://github.com/" class="mysocial"><i class="fab fa-github fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://github.com/" class="mysocial"><i class="fab fa-instagram fa-3x"></i></a></span>&nbsp;&nbsp;
+            <br><br>
+            Copyright &copy; Makvaz 2019 - Theme by <a href="https://jeffprod.com" class="mysocial">JeffProd.com</a>
+            - <a class="mysocial" href="http://0.0.0:4000/about">About</a>
+        </p>
+    </div>
+</footer>
+
+<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</body>
+</html>

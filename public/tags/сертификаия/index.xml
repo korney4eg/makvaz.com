@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+&lt;?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Сертификаия on Makvaz</title>
+         <atom:link href="http://0.0.0:4000/tags/%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D0%B8%D1%8F/index.xml" rel="self" type="application/rss+xml" /> 
+        <link>http://0.0.0:4000/tags/%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D0%B8%D1%8F.html</link>
+        <description>Recent content in Сертификаия on Makvaz</description>
+        
+        <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubdDate>
+        
+        <item>
+          <title>Как подготовиться к сдаче на сертификат &#34;AWS Certified SysOps Administrator – Associate&#34;</title>
+          <link>http://0.0.0:4000/2018/08/25/aws-certification-preparation.html</link>
+          <guid>http://0.0.0:4000/2018/08/25/aws-certification-preparation.html</guid>
+          <description>&lt;p&gt;Многие компании выделяют своим сотрудникам бюджет на обучение и развитие. На эти деньги кто-то покупает курсы или книги, кто-то ездит на конференции, а кто-то идёт получать сертификат. Мне было интересно попробовать получить сертификат &amp;ldquo;AWS Certified SysOps Administrator – Associate&amp;rdquo;.
+О том, что из себя представляет сертификация и подготовка к ней - об этом пойдёт мой рассказ.&lt;/p&gt;</description>
+          <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
+          
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Книги on Makvaz</title>
+    <link>http://0.0.0:4000/tags/%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8.html</link>
+    <description>Recent content in Книги on Makvaz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://0.0.0:4000/tags/%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Книга &#34;Философия DevOps. Искусство управления IT&#34;</title>
+      <link>http://0.0.0:4000/2018/09/25/effective-devops.html</link>
+      <pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://0.0.0:4000/2018/09/25/effective-devops.html</guid>
+      <description>&lt;p&gt;Недавно я прочитал книжку &lt;a href=&#34;https://www.piter.com/product/filosofiya-devops-iskusstvo-upravleniya-it&#34;&gt;&amp;ldquo;Философия DevOps. Искусство управления IT&amp;rdquo;&lt;/a&gt; от &lt;a href=&#34;https://www.oreilly.com/pub/au/6399&#34;&gt;Дженнифер Дэвис&lt;/a&gt; и &lt;a href=&#34;https://www.oreilly.com/pub/au/6392&#34;&gt;Кэтрин Дэниелс&lt;/a&gt;. Как оказалось, эта книга одна из немногих, в которых не затрагиваются технические темы. В ней нет советов как лучше сконфигурировать высоконагруженный сайт или автоматизировать тестирование, вместо этого большое внимание уделено культуре DevOps. Причём эта культура разбирается по частям и с примерами. Так что такое культура DevOps?&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

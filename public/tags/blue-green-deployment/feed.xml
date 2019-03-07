@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blue Green Deployment on Makvaz</title>
+    <link>http://0.0.0:4000/tags/blue-green-deployment.html</link>
+    <description>Recent content in Blue Green Deployment on Makvaz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 11 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://0.0.0:4000/tags/blue-green-deployment/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 1. Blue-Green Deployment</title>
+      <link>http://0.0.0:4000/2018/11/11/blue-green-deployment-with-anisble-with-aws.html</link>
+      <pubDate>Sun, 11 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://0.0.0:4000/2018/11/11/blue-green-deployment-with-anisble-with-aws.html</guid>
+      <description>&lt;p&gt;В этой статье я хочу показать простейший способ, как организовать непрерывное обновление сервиса в AWS при помощи &lt;a href=&#34;https://www.ansible.com/&#34;&gt; Ansible &lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Для примера будем разворачивать &lt;a href=&#34;https://github.com/korney4eg/birthday-checker&#34;&gt; сервис &lt;/a&gt;, который позволяет узнать сколько осталось дней до дня рождения пользователя в этом году. В качестве базы данных будет использован RDS с MySQL, в качестве лоад балансера - Elastic Load Balancer.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Предполагается, что читатель знает азы работы с ansible и AWS, они установлены и настроены.&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}</title>
+        {{ with .OutputFormats.Get "RSS" }}{{ printf "<atom:link href=%q rel=\"self\" type=%q/>" .RelPermalink .MediaType | safeHTML }}{{ end }}
+        <link>{{ .Permalink }}</link>
+        <description>{{ .Site.Params.description }}</description>{{ with .Site.Copyright }}
+        <copyright>{{.}}</copyright>{{end}}{{ if not .Date.IsZero }}
+        <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>{{ end }}
+        {{ range .Data.Pages }}
+        <item>
+            <title>{{ .Title }}</title>
+            <link>{{ .RelPermalink }}</link>
+            <guid isPermaLink="true">{{ .RelPermalink }}</guid>
+            <description>{{ .Summary | html }}</description>
+            <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+            {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
+        </item>
+        {{ end }}
+    </channel>
+</rss>

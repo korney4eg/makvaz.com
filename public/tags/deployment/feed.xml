@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deployment on Makvaz</title>
+    <link>http://0.0.0:4000/tags/deployment.html</link>
+    <description>Recent content in Deployment on Makvaz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://0.0.0:4000/tags/deployment/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 2. Rolling Deployment</title>
+      <link>http://0.0.0:4000/2018/11/26/rolling-deployment-with-anisble-with-aws.html</link>
+      <pubDate>Mon, 26 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://0.0.0:4000/2018/11/26/rolling-deployment-with-anisble-with-aws.html</guid>
+      <description>&lt;p&gt;Продолжаем серию статей по бесперебойному развёртыванию сервиса в AWS при помощи &lt;a href=&#34;https://www.ansible.com/&#34;&gt; Ansible &lt;/a&gt;. В предыдущей &lt;a href=&#34;http://0.0.0:4000/2018/11/11/blue-green-deployment-with-anisble-with-aws.html&#34;&gt;статье&lt;/a&gt; мы разобрали Blue-Green deployment.&lt;/p&gt;
+
+&lt;p&gt;На этот раз мы рассмотрим более долгий, но и более экономный деплоймент - Rolling deployment.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

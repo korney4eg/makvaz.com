@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Makvaz  | Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 3. Canary Deployment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="http://0.0.0:4000/css/blog.css" />
+    
+</head>
+<body>
+
+    
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="http://0.0.0:4000">Home</a>
+            <a class="navbar-item" href="http://0.0.0:4000">About me</a>
+        </div>
+    </nav>
+    
+
+    
+    <section class="hero is-info is-medium">
+        <div class="hero-body" style="background-image: url(http://0.0.0:4000/assets/img/header-pic.jpeg);">
+            <div class="container has-text-centered">
+                <br>
+                <h1 class="title is-size-1">
+                    
+                        Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 3. Canary Deployment
+                    
+                </h1>
+            </div>
+
+<p class="subtitle is-size-6 has-text-grey-light" align="center">
+    03.12.2018 &middot;
+</p>
+
+        </div>
+    </section>
+
+
+<div class="container">
+    <div class="section">
+    
+<div class="tags">
+
+    <span class="tag"><a href="http://0.0.0:4000/tags/devops">devops</a></span>
+
+    <span class="tag"><a href="http://0.0.0:4000/tags/aws">aws</a></span>
+
+    <span class="tag"><a href="http://0.0.0:4000/tags/ansible">ansible</a></span>
+
+    <span class="tag"><a href="http://0.0.0:4000/tags/canary-deployment">canary deployment</a></span>
+
+</div>          
+<div class="columns">
+    <div class="column is-9">
+        <div class="tile is-child box">
+            <div class="content">
+                <p>Эта третья и заключительная часть статей, посвящённых zero-downtime deployment (<a href="/2018/11/11/blue-green-deployment-with-anisble-with-aws.html">первая - Blue-Green Deployment</a>, <a href="/2018/11/18/rolling-deployment-with-anisble-with-aws.html">вторая - Rolling Deployment</a>)</p>
+
+<p>На этот раз речь пойдёт о canary deployment(ещё называется canary release, canary testing или по-русски выкатка c канарейкой).</p>
+
+<h2 id="canary-deployment">Canary Deployment</h2>
+
+<p><strong>Историческая справка:</strong></p>
+
+<blockquote>
+<p>Почему называется выкатка c канарейкой.</p>
+
+<p>В давние времена шахтёры, спускались в шахты для добычи полезных ископаемых. В камерах/пещерах мог скапливаться газ, дышать которым было очень небезопасно. Для того, чтобы убедиться, что камера не содержит вредных газов, шахтёры носили с собой клетку с канарейкой. Они и выпускали птицу у входа в камеру. Если канарейка спокойно летала, значит пещера безопасная и можно в ней находиться. Если же в пещере были газы, то вскоре канарейка быстро теряла сознание. Таким образом удавалось избежать человеческих жертв.</p>
+</blockquote>
+
+<p><img src="/assets/img/canary-deployment-aws-with-ansible/canary-0.jpg" alt="Канарейка-таксикоман" /></p>
+
+<p>Этот принцип используется для деплоя, когда новая версия продукта появляется у очень малого числа пользователей.</p>
+
+<p>Как проходит Canary Deployment:</p>
+
+<ol>
+<li>У нас есть несколько инстансов на которых работает приложение версии 2.21 и лоад балансер.<br>
+<img src="/assets/img/canary-deployment-aws-with-ansible/canary-1.png" alt="canary-1" /></li>
+<li>Добавляем виртуалку с версией 2.22 и подключаем к балансеру.<br>
+<img src="/assets/img/canary-deployment-aws-with-ansible/canary-2.png" alt="canary-2" /></li>
+<li>Отключаем одну старую ноду с версией 2.21 от лоад балансера и удаляем её.<br>
+<img src="/assets/img/canary-deployment-aws-with-ansible/canary-3.png" alt="canary-3" /></li>
+<li>Мониторим ноду, когда на неё приходит трафик.<br>
+<img src="/assets/img/canary-deployment-aws-with-ansible/canary-3.1.png" alt="canary-4" /></li>
+<li>Если по прошествии какого-то времени (пару дней или неделя) ничего критичного не случается, заменяем все виртуалки по одной.<br>
+<img src="/assets/img/canary-deployment-aws-with-ansible/canary-5.png" alt="canary-5" /></li>
+<li>Если что-нибудь происходит на шаге 4, просто выкатываем ноды с предыдущей версией и отключаем от балансера ноды с более новой версией. Их необязательно удалять, их можно проанализировать и выявить причину сбоя, или заняться повторным тестированием.<br>
+<img src="/assets/img/canary-deployment-aws-with-ansible/canary-6.png" alt="canary-6" /></li>
+</ol>
+
+<p>Этот вид развёртывания неприемлем, если есть калечащие изменения в базе данных при переходе на новую версию приложения.</p>
+
+<h2 id="реализация">Реализация</h2>
+
+<p>В реализации Canary deployment является частным случаем Rolling Deployment, только заменяются не все старые ноды а некоторые(в примере выше только одна). По заверешении тестирования и мониторинга можно продолжить rolling deployment, пока старые ноды не будут заменены.</p>
+
+<h2 id="запускаем-ansible">Запускаем ansible</h2>
+
+<p>Вот <a href="https://github.com/korney4eg/rolling-deployment-ansible"> ссылка </a> на полный плейбук.</p>
+
+<p>Проще всего будет клонировать весь репозиторий и запустить скрипт:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/korney4eg/rolling-deployment-ansible
+cd rolling-deployment-ansible/
+ansible-playbook provision.yaml -e version<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;2.22&#39;</span> -e instances_num<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> -v</code></pre></div>
+<p>ansible-playbook позволяет перезаписывать переменные из командной строки с помощью флага <em>-e</em>, дальше идёт имя переменной и её значение. Из примера видно, что будет добавлена одна нода с версией 2.22.</p>
+
+<p>Чтобы всё удалить, выполняем команду:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ansible-playbook destroy.yaml  -v</code></pre></div>
+<h2 id="a-b-тестирование">A/B Тестирование</h2>
+
+<p>По описанию, выкатка c канарейкой очень похожа на A/B тестирование. В принципе так и есть. Только малая часть трафика идёт на ноды с новой версией приложения, и несколько пользователей могут оценить новые фичи. Весь остальной трафик идёт на старые ноды и большинство пользователей разницу не заметят.</p>
+
+<p>Например в Facebook сначала сами сотрудники получают новую версию программы и работают с ней какое-то время. Затем постепенно выкатывается на все регионы за пределами офисов.</p>
+
+<h2 id="заключение">Заключение</h2>
+
+<p>В этих статьях были рассмотрены основные способы непрерывного развёртывания. Какой из них использовать решать вам.</p>
+            </div>
+        </div>
+    </div>
+    <div class="column is-3">
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Tags</h1>
+        <div class="tags">
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/ansible">ansible</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/aws">aws</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/bitwarden">bitwarden</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/blue-green-deployment">blue-green-deployment</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/canary-deployment">canary-deployment</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/chef">chef</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/ci/cd">ci/cd</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/deployment">deployment</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/devops">devops</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/git">git</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/howto">howto</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/opensource">opensource</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/passwordmanager">passwordmanager</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/tmux">tmux</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/vim">vim</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8">книги</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D0%BA%D1%83%D1%80%D1%81%D1%8B">курсы</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D0%BC%D1%8B%D1%81%D0%BB%D0%B8">мысли</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D1%81%D0%B0%D0%B9%D1%82">сайт</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D0%B8%D1%8F">сертификаия</a></span>
+        
+            <span class="tag"><a href="http://0.0.0:4000/tags/%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5">техническое</a></span>
+        
+        </div>          
+    </div>
+</div><br>
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Recent posts</h1>
+        
+            <h1><a href="http://0.0.0:4000/2018/12/17/cources-recommendations.html">Где помогают освоить магию командной строки. Рекомендую курсы git и tmux</a></h1>
+            <time class="has-text-grey-light is-size-7">17.12.2018</time>
+        
+            <h1><a href="http://0.0.0:4000/2018/12/10/password-managers.html">Выбираем open source менеджер паролей</a></h1>
+            <time class="has-text-grey-light is-size-7">10.12.2018</time>
+        
+            <h1><a href="http://0.0.0:4000/2018/12/03/canary-deployment-with-ansible-on-aws.html">Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 3. Canary Deployment</a></h1>
+            <time class="has-text-grey-light is-size-7">03.12.2018</time>
+        
+            <h1><a href="http://0.0.0:4000/2018/11/26/rolling-deployment-with-anisble-with-aws.html">Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 2. Rolling Deployment</a></h1>
+            <time class="has-text-grey-light is-size-7">26.11.2018</time>
+        
+            <h1><a href="http://0.0.0:4000/2018/11/11/blue-green-deployment-with-anisble-with-aws.html">Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 1. Blue-Green Deployment</a></h1>
+            <time class="has-text-grey-light is-size-7">11.11.2018</time>
+        
+    </div>
+</div>
+    
+<br>
+                
+  
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Related posts</h1>
+      
+      
+            <h1><a href="http://0.0.0:4000/2018/11/26/rolling-deployment-with-anisble-with-aws.html">Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 2. Rolling Deployment</a></h1>
+            <time class="has-text-grey-light is-size-7">26.11.2018</time>
+      
+            <h1><a href="http://0.0.0:4000/2018/11/11/blue-green-deployment-with-anisble-with-aws.html">Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 1. Blue-Green Deployment</a></h1>
+            <time class="has-text-grey-light is-size-7">11.11.2018</time>
+      
+            <h1><a href="http://0.0.0:4000/2018/08/25/aws-certification-preparation.html">Как подготовиться к сдаче на сертификат &#34;AWS Certified SysOps Administrator – Associate&#34;</a></h1>
+            <time class="has-text-grey-light is-size-7">25.08.2018</time>
+      
+            <h1><a href="http://0.0.0:4000/2018/05/21/chef-provisioning-aws-folder-structure.html">Зачем chef provisioning пересоздал всё в AWS и как это поправить.</a></h1>
+            <time class="has-text-grey-light is-size-7">21.05.2018</time>
+      
+    </div>
+</div>
+
+    
+<br>
+        <div class="card">
+    <div class="card-content">
+        <h1 class="title is-5">Archives</h1>
+        
+            <a href="http://0.0.0:4000/archives/2018">2018</a> (12)<br>
+        
+            <a href="http://0.0.0:4000/archives/2017">2017</a> (2)<br>
+        
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+<footer class="footer has-background-grey-darker has-text-white">
+    <div class="content has-text-centered">
+        <p>
+            <span class="icon is-large"><a href="https://twitter.com/" class="mysocial"><i class="fab fa-twitter fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://www.youtube.com/" class="mysocial"><i class="fab fa-youtube fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://github.com/" class="mysocial"><i class="fab fa-github fa-3x"></i></a></span>&nbsp;&nbsp;
+            <span class="icon is-large"><a href="https://github.com/" class="mysocial"><i class="fab fa-instagram fa-3x"></i></a></span>&nbsp;&nbsp;
+            <br><br>
+            Copyright &copy; Makvaz 2019 - Theme by <a href="https://jeffprod.com" class="mysocial">JeffProd.com</a>
+            - <a class="mysocial" href="http://0.0.0:4000/about">About</a>
+        </p>
+    </div>
+</footer>
+
+<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</body>
+</html>

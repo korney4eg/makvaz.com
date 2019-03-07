@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+&lt;?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Year on Makvaz</title>
+         <atom:link href="http://0.0.0:4000/year/index.xml" rel="self" type="application/rss+xml" /> 
+        <link>http://0.0.0:4000/year.html</link>
+        <description>Recent content in Year on Makvaz</description>
+        
+        
+    </channel>
+</rss>

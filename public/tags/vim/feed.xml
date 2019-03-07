@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on Makvaz</title>
+    <link>http://0.0.0:4000/tags/vim.html</link>
+    <description>Recent content in Vim on Makvaz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://0.0.0:4000/tags/vim/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Плагины для работы с сессиями в VIM</title>
+      <link>http://0.0.0:4000/2017/12/23/vim-session-plugins.html</link>
+      <pubDate>Sat, 23 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://0.0.0:4000/2017/12/23/vim-session-plugins.html</guid>
+      <description>&lt;p&gt;В &lt;a href=&#34;../10/vim-sessions.html&#34;&gt;прошлой статье&lt;/a&gt; мы разобрали что такое сессии в VIM и как их можно использовать. Конечно в интернете есть много плагинов для работы с сессиями и самые интересные я хочу разобрать.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Сохранение сессий в VIM</title>
+      <link>http://0.0.0:4000/2017/12/10/vim-sessions.html</link>
+      <pubDate>Sun, 10 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://0.0.0:4000/2017/12/10/vim-sessions.html</guid>
+      <description>&lt;p&gt;Как-то раз подглядел у коллеги его особенность работы в IntelliJ IDEA: возможность мгновенной загрузки другого проекта (сессии) в новом окне. Мне эта идея понравилась и я стал искать, а нет ли в VIM чего-нибудь подобного.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

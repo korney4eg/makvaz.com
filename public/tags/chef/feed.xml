@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chef on Makvaz</title>
+    <link>http://0.0.0:4000/tags/chef.html</link>
+    <description>Recent content in Chef on Makvaz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 May 2018 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://0.0.0:4000/tags/chef/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Зачем chef provisioning пересоздал всё в AWS и как это поправить.</title>
+      <link>http://0.0.0:4000/2018/05/21/chef-provisioning-aws-folder-structure.html</link>
+      <pubDate>Mon, 21 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://0.0.0:4000/2018/05/21/chef-provisioning-aws-folder-structure.html</guid>
+      <description>&lt;p&gt;Для того, что бы накатывать изминения в этот и некоторые другие сайты очень удобно пользоваться инструментами конфигурационного управления(Configuration Management tools), такими как OpsCode Chef, Puppet, RedHad Ansible. Мне ближе всего и удобнее использовать Chef потому что, это DSL к Ruby и код легко читается и пишется, а к тому же несколько лет назад был дополнен ещё надстройкой для создания и конфигурирования облачных ресурсов &lt;a href=&#34;https://docs.chef.io/provisioning.html&#34;&gt;Chef Provisioning&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

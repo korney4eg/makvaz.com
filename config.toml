@@ -1,0 +1,43 @@
+baseURL = "http://0.0.0.0:4000"
+languageCode = "en-us"
+title = "Makvaz"
+
+description = "Технические заметки и не только"
+
+theme = "jeffprod"
+
+uglyurls = true
+
+disableKinds = ["section"]
+
+PygmentsCodeFences = true
+PygmentsStyle = "monokai"
+
+[outputFormats]
+[outputFormats.RSS]
+mediatype = "application/rss"
+baseName = "feed"
+
+[frontmatter]
+date  = [":filename", ":default"]
+
+[permalinks]
+    # :title is used if :slug is not defined in post frontmatter
+    # posts = "/:year/:month/:day/:filename"
+    post = "/:year/:month/:day/:slug"
+    archm = "/:year/:month/"
+    archy = "/:year/"
+
+[taxonomies]
+    year= "year"
+    tag = "tags"
+    archive = "archives"
+
+languageCode = "en-us"
+copyright = "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."
+
+[author]
+    name = "Aliaksei Karneyeu"
+
+# [params]
+#   description = "Tesla's Awesome Hugo Site"

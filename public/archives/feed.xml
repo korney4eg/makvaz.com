@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Archives on Makvaz</title>
+    <link>http://0.0.0:4000/archives.html</link>
+    <description>Recent content in Archives on Makvaz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://0.0.0:4000/archives/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2017</title>
+      <link>http://0.0.0:4000/archives/2017.html</link>
+      <pubDate>Sat, 23 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://0.0.0:4000/archives/2017.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>2018</title>
+      <link>http://0.0.0:4000/archives/2018.html</link>
+      <pubDate>Mon, 17 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://0.0.0:4000/archives/2018.html</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

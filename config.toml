@@ -1,43 +1,67 @@
-baseURL = "http://0.0.0.0:4000"
-languageCode = "en-us"
+baseURL = "https://makvaz.com"
+languageCode = "ru-ru"
 title = "Makvaz"
 
-description = "Технические заметки и не только"
 
 theme = "jeffprod"
 
-uglyurls = true
+paginate = 5
+# uglyurls = true
 
-disableKinds = ["section"]
+# disableKinds = ["section"]
 
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
+
+disqusShortname = "makvaz-com"
+googleAnalytics = "UA-111183533-1"
+
+enableRobotsTXT = true
+rssLimit = 10
+[privacy]
+  [privacy.disqus]
+    disable = false
+  [privacy.googleAnalytics]
+    anonymizeIP = true
+    disable = false
+    respectDoNotTrack = true
+    useSessionStorage = true
 
 [outputFormats]
 [outputFormats.RSS]
 mediatype = "application/rss"
 baseName = "feed"
 
+
 [frontmatter]
 date  = [":filename", ":default"]
 
 [permalinks]
-    # :title is used if :slug is not defined in post frontmatter
-    # posts = "/:year/:month/:day/:filename"
     post = "/:year/:month/:day/:slug"
-    archm = "/:year/:month/"
-    archy = "/:year/"
+    page = "/page:slug"
 
 [taxonomies]
-    year= "year"
     tag = "tags"
     archive = "archives"
-
-languageCode = "en-us"
-copyright = "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."
 
 [author]
     name = "Aliaksei Karneyeu"
 
-# [params]
-#   description = "Tesla's Awesome Hugo Site"
+sectionPagesMenu = "main"
+[[menu.main]]
+    name = "О сайте"
+    weight = 2
+    url = "/about/"
+    identifier = "about"
+    pre = ""
+[[menu.main]]
+    name = "RSS"
+    weight = 3
+    pre = "<i class='fas fa-rss-square fa-3x'>"
+    url = "/feed.xml"
+    identifier = "RSS"
+
+
+[params]
+  featureImg = "assets/img/header-pic.jpeg" 
+  description = "Технические заметки и не только"

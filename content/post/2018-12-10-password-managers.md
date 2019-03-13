@@ -1,5 +1,6 @@
 ---
 title: Выбираем open source менеджер паролей
+archives: "2018"
 layout: post
 tags: [opensource,  bitwarden, passwordmanager]
 ---

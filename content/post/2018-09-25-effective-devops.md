@@ -1,6 +1,7 @@
 ---
 title: Книга "Философия DevOps. Искусство управления IT"
 layout: post
+archives: "2018"
 tags: [книги, мысли]
 ---
 

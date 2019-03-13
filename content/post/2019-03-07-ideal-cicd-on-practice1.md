@@ -1,10 +1,12 @@
 ---
 layout: post
 title: Просто о DevOps. Строим идеальный CI/CD на практике. Часть 1.
-#feature-img: "assets/img/ideal-ci-cd-on-practice1/ci.png"
+#featureImg: "assets/img/ideal-ci-cd-on-practice1/ci.png"
 #thumbnail: "assets/img/ideal-ci-cd-on-practice1/ci.png"
-archive: "2019"
+archives: "2019"
 tags: [devops, howto, cicd, docker, wordpress]
+aliases:
+  - /2019/03/07/ideal-cicd-on-practice1.html
 ---
 _В этом цикле статей я хочу описать построение [ процесса Continuous Integration/Continuous Delivery ](/2018/03/18/ideal-ci-cd.html) на конкретных примерах и аргументирую выбор того или иного решения._
 <!--more-->

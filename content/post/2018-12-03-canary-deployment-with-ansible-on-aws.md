@@ -1,6 +1,7 @@
 ---
 title: Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 3. Canary Deployment
 layout: post
+archives: "2018"
 preview_image: /assets/img/canary-deployment-aws-with-ansible/canary-0.jpg
 categories: []
 tags: [devops, aws, ansible, canary deployment]

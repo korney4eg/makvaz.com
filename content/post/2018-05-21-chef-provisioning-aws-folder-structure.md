@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Зачем chef provisioning пересоздал всё в AWS и как это поправить.
-# feature-img: "image/location"
+archives: "2018"
+# featureImg: "image/location"
 # thumbnail: "image/location"
 tags: [chef, aws, техническое]
 ---

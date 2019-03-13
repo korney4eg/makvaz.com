@@ -1,9 +1,12 @@
 ---
 layout: post
 title: Идеальный Continuous Integration/Continuous Delivery
-#feature-img: "assets/img/cicd-header.png"
+archives: "2018"
+#featureImg: "assets/img/cicd-header.png"
 #thumbnail: "assets/img/cicd-header.png"
 tags: ['cicd', мысли]
+aliases:
+  - 2018/11/18/rolling-deployment-with-anisble-with-aws.html
 
 ---
 Вот уже несколько лет **Continuous Integration/Continuous Delivery(CI/CD)** набирает популярность, а что это такое? 

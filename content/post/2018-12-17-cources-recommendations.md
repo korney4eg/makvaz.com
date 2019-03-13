@@ -1,5 +1,6 @@
 ---
 title: Где помогают освоить магию командной строки. Рекомендую курсы git и tmux
+archives: "2018"
 layout: post
 tags: [курсы, git, tmux]
 ---

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Как подготовиться к сдаче на сертификат "AWS Certified SysOps Administrator – Associate" 
-#feature-img: "image/location"
+archives: "2018"
+#featureImg: "image/location"
 #thumbnail: "image/location"
 tags: [aws, сертификаия]
 ---

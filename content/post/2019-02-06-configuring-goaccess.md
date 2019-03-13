@@ -1,9 +1,12 @@
 ---
 layout: post
 title: Просто анализируем посещаемость с помощью goaccess
-feature-img: "assets/img/configuring-goaccess/user_activity.png"
+archives: "2019"
+featureImg: "assets/img/configuring-goaccess/user_activity.png"
 thumbnail: "assets/img/configuring-goaccess/user_activity.png"
 tags: [goaccess, сайт, howto]
+aliases:
+  - /2019/02/06/configuring-goaccess.html
 ---
 Для того, чтобы анализировать пользовательскую активность на своём блоге или сайте необязательно пользоваться гугл аналитикой, яндекс метрикой или другими внешними сервисами. Всё что нужно находиться у вас на сервере, а конкретно - **access-логи**. Из них можно узнать сколько пользователей пришло на ваш сайт, откуда они пришли, во сколько и много-много другого. Анализировать логи можно вручную, можно с помощью своей программы или воспользоваться программой, которая под это дело заточена.
 

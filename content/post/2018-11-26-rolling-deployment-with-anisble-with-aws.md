@@ -1,10 +1,13 @@
 ---
 title: Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 2. Rolling Deployment
 layout: post
+archives: "2018"
 preview_image: /assets/img/rolling-deployment-aws-with-ansible/rolling-1.png
 categories: []
 tags: [devops, aws, ansible, deployment]
 twit: Простой пример Rolling Deployment на Ansible в AWS
+aliases:
+  - /2018/11/18/rolling-deployment-with-anisble-with-aws.html
 ---
 
 Продолжаем серию статей по бесперебойному развёртыванию сервиса в AWS при помощи [ Ansible ]( https://www.ansible.com/). В предыдущей [статье](/2018/11/11/blue-green-deployment-with-anisble-with-aws.html) мы разобрали Blue-Green deployment.
@@ -39,11 +42,9 @@ twit: Простой пример Rolling Deployment на Ansible в AWS
 ### 0. Используемые переменные
 
 ```yaml
-{% raw %}
     region: eu-west-1
     version: 2.22
     instance_num: 3
-{% endraw %}
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**region:** - регион AWS, в этом примере используется регион в Ирландии
@@ -62,7 +63,6 @@ twit: Простой пример Rolling Deployment на Ansible в AWS
 Собираем данные о виртуалках с нужной версией.
 
 ```yaml
-{% raw %}
     - name: Get new instances
       ec2_remote_facts:
         filters:
@@ -83,7 +83,6 @@ twit: Простой пример Rolling Deployment на Ansible в AWS
       set_fact:
         new_instances: "{{ new_instances.instances|map(attribute='id')|list }}"
       when: new_instances.instances is defined
-{% endraw%}
 ```
 Так как из всей собранной информации нам нужны только айдишники, то в переменную **new_instances**  записывается только список айдишников виртуалок или пустой список если ничего не нашли.
 
@@ -91,7 +90,6 @@ twit: Простой пример Rolling Deployment на Ansible в AWS
 
 В этот список будут включены инстансы из п. 1.1., поэтому отдельно удаляем их из этого списка
 ```yaml
-{% raw %}
     - name: Get old instances
       ec2_remote_facts:
         filters:
@@ -115,7 +113,6 @@ twit: Простой пример Rolling Deployment на Ansible в AWS
     - name: Remove new instances from old ones
       set_fact:
         old_instances: "{{old_instances|difference(new_instances)}}"
-{% endraw%}
 ```
 Точно также записываем список айдишников.
 
@@ -127,7 +124,6 @@ twit: Простой пример Rolling Deployment на Ansible в AWS
 Как уже упоминалось раннее, сервис был упрощён, теперь скрипт при старте виртуалки выглядит следующим образом.
 
 ```
-{% raw %}
 #!/bin/bash
 yum install nginx -y
 
@@ -145,7 +141,6 @@ server {
     }
 }' > /etc/nginx/conf.d/virtual.conf
 service nginx restart
-{% endraw%}
 ```
 
 Создаётся два эндпоинта:
@@ -158,12 +153,10 @@ service nginx restart
 Так как в Ansible нельзя просто обьеденить несколько тасков в цикл, то с версии 2.1 добавили возможность запустить группу тасков циклом, обьеденённых в один файл. Выглядит эта конструкция примерно так:
 
 ```yaml
-{% raw %}
     - include: add_remove.yaml
       with_sequence: start=1 end={{ instance_num }}
       loop_control:
         loop_var: instance_counter
-{% endraw%}
 ```
 
 Получается мы вызываем список заданий `add_remove.yaml` столько раз, сколько планируем запустить новых инстансов(здесь будет запущено **instance_num** раз).
@@ -175,7 +168,6 @@ service nginx restart
 #### 2.3. Создаётся виртуалка и добавляется в конец списка **old_instances**
 
 ```yaml
-{% raw %}
 - set_fact:
     new_instances_num: "{{new_instances|length|int}}"
 
@@ -201,14 +193,12 @@ service nginx restart
     new_instances: "{{new_instances}}+{{ec2.instance_ids}}"
     new_instances_num: "{{new_instances|int + 1}}"
   when: ec2.changed == True
-{% endraw%}
 ```
 Условие используется для того, чтобы не создавать лишние инстансы.
 
 #### 2.2 Добавляем в Elastic Load Balancer и ждём, когда виртуалка запустится
 
 ```yaml
-{% raw %}
 - name: Create ELB with all instances
   ec2_elb_lb:
     name: "app-rolling-lb"
@@ -242,14 +232,12 @@ service nginx restart
   until: elb_facts.elbs[0].instances_inservice_count  == (new_instances|union ( old_instances)|length)
   retries: 10
   delay: 15
-{% endraw%}
 ```
 Добавляем старые и новые инстансы в балансер, на случай если они не были добавлены раньше. Затем ждём когда все смогут ответить на запросы балансера.
 
 #### 2.3 Самое хитрое место 
 
 ```yaml
-{% raw %}
 - name: Terminate instances that were previously launched
   ec2:
     state: 'absent'
@@ -263,7 +251,6 @@ service nginx restart
   set_fact:
     old_instances: "{{old_instances[1:]}}"
   when: ec2.changed == True and old_instances.0 is defined
-{% endraw%}
 ```
 
 Удаляем первую виртуалку физически и её айдишник из списка **old_instances**, если новая была создана.

@@ -11,7 +11,7 @@ tags: [aws, сертификаия]
 О том, что из себя представляет сертификация и подготовка к ней - об этом пойдёт мой рассказ.
 <!--more-->
 
-![AWS Certified SysOps Administrator – Associate](/assets/img/aws-certification-preparation/aws_certified_logo.png)
+![AWS Certified SysOps Administrator – Associate](aws_certified_logo.png)
 
 Сертификат "AWS Certified SysOps Administrator – Associate" - это международный сертификат, показывающий что сдавший хорошо разбирается в технологиях AWS.
 

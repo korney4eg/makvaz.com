@@ -2,7 +2,7 @@
 title: Пример бесперебойного развёртывания сервиса на Ansible в AWS. Часть 3. Canary Deployment
 layout: post
 archives: "2018"
-preview_image: /assets/img/canary-deployment-aws-with-ansible/canary-0.jpg
+preview_image: canary-0.jpg
 categories: []
 tags: [devops, aws, ansible, canary deployment]
 ---
@@ -20,24 +20,24 @@ tags: [devops, aws, ansible, canary deployment]
 >
 > В давние времена шахтёры, спускались в шахты для добычи полезных ископаемых. В камерах/пещерах мог скапливаться газ, дышать которым было очень небезопасно. Для того, чтобы убедиться, что камера не содержит вредных газов, шахтёры носили с собой клетку с канарейкой. Они и выпускали птицу у входа в камеру. Если канарейка спокойно летала, значит пещера безопасная и можно в ней находиться. Если же в пещере были газы, то вскоре канарейка быстро теряла сознание. Таким образом удавалось избежать человеческих жертв.
 
-![Канарейка-таксикоман](/assets/img/canary-deployment-aws-with-ansible/canary-0.jpg)
+![Канарейка-таксикоман](canary-0.jpg)
 
 Этот принцип используется для деплоя, когда новая версия продукта появляется у очень малого числа пользователей.
 
 Как проходит Canary Deployment:
 
 1. У нас есть несколько инстансов на которых работает приложение версии 2.21 и лоад балансер.<br>
-![canary-1](/assets/img/canary-deployment-aws-with-ansible/canary-1.png)
+![canary-1](canary-1.png)
 2. Добавляем виртуалку с версией 2.22 и подключаем к балансеру.<br>
-![canary-2](/assets/img/canary-deployment-aws-with-ansible/canary-2.png)
+![canary-2](canary-2.png)
 3. Отключаем одну старую ноду с версией 2.21 от лоад балансера и удаляем её.<br>
-![canary-3](/assets/img/canary-deployment-aws-with-ansible/canary-3.png)
+![canary-3](canary-3.png)
 4. Мониторим ноду, когда на неё приходит трафик.<br>
-![canary-4](/assets/img/canary-deployment-aws-with-ansible/canary-3.1.png)
+![canary-4](canary-3.1.png)
 5. Если по прошествии какого-то времени (пару дней или неделя) ничего критичного не случается, заменяем все виртуалки по одной.<br>
-![canary-5](/assets/img/canary-deployment-aws-with-ansible/canary-5.png)
+![canary-5](canary-5.png)
 6. Если что-нибудь происходит на шаге 4, просто выкатываем ноды с предыдущей версией и отключаем от балансера ноды с более новой версией. Их необязательно удалять, их можно проанализировать и выявить причину сбоя, или заняться повторным тестированием.<br>
-![canary-6](/assets/img/canary-deployment-aws-with-ansible/canary-6.png)
+![canary-6](canary-6.png)
 
 Этот вид развёртывания неприемлем, если есть калечащие изменения в базе данных при переходе на новую версию приложения.
 

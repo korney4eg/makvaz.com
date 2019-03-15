@@ -2,8 +2,8 @@
 layout: post
 title: Просто анализируем посещаемость с помощью goaccess
 archives: "2019"
-featureImg: "assets/img/configuring-goaccess/user_activity.png"
-thumbnail: "assets/img/configuring-goaccess/user_activity.png"
+featureImg: "2019/02/06/configuring-goaccess/user_activity.png"
+thumbnail: "2019/02/06/configuring-goaccess/user_activity.png"
 tags: [goaccess, сайт, howto]
 aliases:
   - /2019/02/06/configuring-goaccess.html
@@ -157,7 +157,7 @@ docker run   -v "/Users/myuser/projects/goaccess/srv/logs/:/srv/logs" -v "/Users
 
 ## Заключение
 
-В итоге у меня получился [вот такой отчёт](/assets/html/usage_report.html).
+В итоге у меня получился [вот такой отчёт](usage_report.html).
 
 Теперь наш образ можно залить на Docker Hub и пользоваться им на удалённом сервере.
 

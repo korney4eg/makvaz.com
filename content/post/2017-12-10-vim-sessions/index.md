@@ -2,8 +2,8 @@
 layout: post
 title: Сохранение сессий в VIM
 archives: "2017"
-featureImg: "assets/img/vim-sessions.png"
-thumbnail: "assets/img/vim-sessions.png"
+featureImg: "/2017/12/10/vim-sessions/vim-sessions.png"
+thumbnail: "/2017/12/10/vim-sessions/vim-sessions.png"
 tags: [vim]
 
 ---

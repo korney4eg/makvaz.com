@@ -13,11 +13,11 @@ tags: [golang, программирование, howto]
 
 После [установки и настройки goaccess](/2019/02/06/configuring-goaccess.html) у меня получился такой график за декабрь:
 
-![Посещения за месяц](/assets/img/parsing-access-logs-with-golang/blog-dashboard.png)
+![Посещения за месяц](blog-dashboard.png)
 
 Цифры впечатляют. Но если пристально взглянуть на другие показатели, например, браузеры, с которых пришли пользователи (user agent), то видно, что не всё так хорошо.
 
-![Список браузеров](/assets/img/parsing-access-logs-with-golang/user-agents.png)
+![Список браузеров](user-agents.png)
 
 Получается, что из **2800** запросов:
 
@@ -395,7 +395,7 @@ func TestAnonymizeIp(t *testing.T) {
 
 По итогу получился вот такой график:
 
-![Подчищенные посещения за месяц](/assets/img/parsing-access-logs-with-golang/filtered-blog-dashboard.png)
+![Подчищенные посещения за месяц](blog-dashboard.png)
 
 Сегодня мы написали достаточно простую программу по очищению логов. Её можно использовать для генерации отчётов в связке с goaccess на сервере.
 

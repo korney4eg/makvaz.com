@@ -23,11 +23,11 @@ aliases:
 
 Открываем *локальную* базу в KeePassX,затем в меню "Хранилище" -> "Экспортировать в файл CSV" (как показано на рисунке снизу) 
 
-![экспорт в CSV файл](/assets/img/passwrod-database-async/export-csv.png)
+![экспорт в CSV файл](export-csv.png)
 
 сохраняем в папку с документами как `1.csv`. Здесь папка с документами - `~/Documents/`
 
-![сохраняем в CSV файл](/assets/img/passwrod-database-async/save-csv.png)
+![сохраняем в CSV файл](save-csv.png)
 
 Точно так же открываем *скаченную* базу и экспортируем её в файл `~/Documents/2.csv`
 

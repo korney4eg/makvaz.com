@@ -20,13 +20,13 @@ aliases:
 Идея заключается в следующем:
 
 1. У нас есть несколько инстансов на которых работает приложение версии 2.21 и лоад балансер.
-![rolling-1](/assets/img/rolling-deployment-aws-with-ansible/rolling-1.png)
+![rolling-1](rolling-1.png)
 2. Добавляем по одной виртуалке с версией 2.22 и подключаем к балансеру.
-![rolling-2](/assets/img/rolling-deployment-aws-with-ansible/rolling-2.png)
+![rolling-2](rolling-2.png)
 3. Отключаем одну старую ноду с версией 2.21 от лоад балансера и удаляем её.
-![rolling-3](/assets/img/rolling-deployment-aws-with-ansible/rolling-3.png)
+![rolling-3](rolling-3.png)
 4. Повторяем шаги 2 и 3 пока не заменим все виртуалки.
-![rolling-4](/assets/img/rolling-deployment-aws-with-ansible/rolling-6.png)
+![rolling-4](rolling-6.png)
 
 Этот вид развёртывания неприемлем, если есть калечащие изменения в базе данных при переходе на новую версию приложения.
 

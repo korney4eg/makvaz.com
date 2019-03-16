@@ -15,13 +15,13 @@ thumbnail: "assets/img/vim-session-plugins/title.jpeg"
 
 Рассмотрим на примере:
 
-В редакторе открыто два вертикально разделенных окна.[![Screenshot1](../../../assets/img/vim-session-plugins/vim-obsession1.png) ](../../../assets/img/vim-session-plugins/vim-obsession1.png)
+В редакторе открыто два вертикально разделенных окна.[![Screenshot1](vim-obsession1.png)
 
-Вводим команду `:Obsession`.[![Screenshot2](../../../assets/img/vim-session-plugins/vim-obsession2.png) ](../../../assets/img/vim-session-plugins/vim-obsession2.png)
+Вводим команду `:Obsession`.[![Screenshot2](vim-obsession2.png)
 
-Теперь Vim будет записывать все наши операции с окнами и буферами в файл `.session.vim` в текущем каталогe. Попробуем открыть ещё одно окно, но уже горизонтально.[![Screenshot3](../../../assets/img/vim-session-plugins/vim-obsession3.png) ](../../../assets/img/vim-session-plugins/vim-obsession3.png)
+Теперь Vim будет записывать все наши операции с окнами и буферами в файл `.session.vim` в текущем каталогe. Попробуем открыть ещё одно окно, но уже горизонтально.[![Screenshot3](vim-obsession3.png)
 
-Можно спокойно закрыть редактор командой `:wqa` и глянуть в текущую папку[![Screenshot4](../../../assets/img/vim-session-plugins/vim-obsession4.png) ](../../../assets/img/vim-session-plugins/vim-obsession4.png)
+Можно спокойно закрыть редактор командой `:wqa` и глянуть в текущую папку[![Screenshot4](vim-obsession4.png)
 
 Убедившись, что файл `.session.vim` существует в текущей папке просто открываем vim без каких-либо аргументов. Открылось тоже самое окно, даже NERDTree подсветил нужный файл (для этого нужно немного настроить его)
 
@@ -41,9 +41,9 @@ thumbnail: "assets/img/vim-session-plugins/title.jpeg"
 
 Посмотрим на примере:
 
-Открываем нужные файлы в Vim, и прописываем команду`:SaveSession roses_violets`[![Screenshot5](../../../assets/img/vim-session-plugins/vim-session1.png) ](../../../assets/img/vim-session-plugins/vim-session1.png)
+Открываем нужные файлы в Vim, и прописываем команду`:SaveSession roses_violets`[![Screenshot5](vim-session1.png)
 
-Сессия сохранилась в директорию _~/.vim/sessions/_. Теперь можно закрыть редактор (перед выходом вылезает окно, в котором спрашивается, сохранить ли сессию или нет. Выбираем “Да”) и открыть без аргументов в домашней папке (при условии, что мы не сохраняли сессии в ней с vim-obsession). Набираем команду `:OpenSession ` и клавиш **TAB** , плагин подсказывает, какие сессии можно загрузить.[![Screenshot6](../../../assets/img/vim-session-plugins/vim-session2.png) ](../../../assets/img/vim-session-plugins/vim-session2.png)Плюсы:
+Сессия сохранилась в директорию _~/.vim/sessions/_. Теперь можно закрыть редактор (перед выходом вылезает окно, в котором спрашивается, сохранить ли сессию или нет. Выбираем “Да”) и открыть без аргументов в домашней папке (при условии, что мы не сохраняли сессии в ней с vim-obsession). Набираем команду `:OpenSession ` и клавиш **TAB** , плагин подсказывает, какие сессии можно загрузить.[![Screenshot6](vim-session2.png)Плюсы:
 
 - Можно посмотреть список сессий и открыть нужную из любого места
 - Много разных опций по настройке, например, название сессии по-умолчанию. Минусы:

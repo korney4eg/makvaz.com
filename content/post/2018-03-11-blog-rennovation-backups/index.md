@@ -3,8 +3,8 @@ layout: post
 title: Обновление дизайна и переезд. А вы уже делаете бэкапы?
 archive: 2013
 tags: [сайт]
-featureImg: "assets/img/backup-header.jpeg"
-thumbnail: "assets/img/backup-header.jpeg"
+featureImg: "/2018/03/11/blog-rennovation-backups/backup-header.jpeg"
+thumbnail: "/2018/03/11/blog-rennovation-backups/backup-header.jpeg"
 ---
 ## MacBook перестал загружаться
 

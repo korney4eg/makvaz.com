@@ -3,8 +3,8 @@ layout: post
 title: Плагины для работы с сессиями в VIM
 archives: "2017"
 tags: [vim]
-featureImg: "assets/img/vim-session-plugins/title.jpeg"
-thumbnail: "assets/img/vim-session-plugins/title.jpeg"
+featureImg: "/2017/12/23/vim-session-plugins/title.jpeg"
+thumbnail: "/2017/12/23/vim-session-plugins/title.jpeg"
 ---
 В [прошлой статье](../10/vim-sessions.html) мы разобрали что такое сессии в VIM и как их можно использовать. Конечно в интернете есть много плагинов для работы с сессиями и самые интересные я хочу разобрать.
 <!--more-->

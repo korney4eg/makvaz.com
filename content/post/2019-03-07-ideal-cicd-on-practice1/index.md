@@ -15,7 +15,7 @@ _В этом цикле статей я хочу описать построен
 
 Весь процесс CI можно проиллюстрировать следующей картинкой:
 
-![CI](/assets/img/ideal-ci-cd-on-practice1/ci.png)
+![CI](ci.png)
 
 Со стороны разработки это выглядит так: написали фичу, пушнули в GitHub, прошли ревью, тесты, собирается артефакт, затем деплоится на тестовый сервер. Потом после дополнительных тестов идёт в продакшн.
 
@@ -130,7 +130,7 @@ wp plugin activate thank-after-post
 
 Для разработки на локальной машине нам не нужен высоконадёжный, масштабируемый сервис, поэтому будет использоваться всего 3 контейнера, как показано на рисунке:
 
-![Схема контейнеров](/assets/img/ideal-ci-cd-on-practice1/schema.png)
+![Схема контейнеров](schema.png)
 
 Создаём файл `docker-compose.yaml`, рекомендую почитать [спецификацию](https://docs.docker.com/compose/compose-file/):
 ```yaml
@@ -265,15 +265,15 @@ Creating wordpress         ... done
 
 Подождём секунд 15 и можно открыть [localhost](http://localhost). Видно что-то такое:
 
-![Новоиспеченый блог](/assets/img/ideal-ci-cd-on-practice1/wordpress-ready.png)
+![Новоиспеченый блог](wordpress-ready.png)
 
 Проверим, что наш плагин работает. [Залогинимся](http://localhost/wp-login.php)(логин: **admin**, пароль: **parol**) и [опубликуем пост](http://localhost/wp-admin/post-new.php).
 
-![Создаём пост](/assets/img/ideal-ci-cd-on-practice1/wordpress-create-post.png)
+![Создаём пост](wordpress-create-post.png)
 
 Нажимаем "Publish" 2 раза и открываем на сайте статью (кнопка "View Post") ...
 
-![Опубликованный пост](/assets/img/ideal-ci-cd-on-practice1/wordpress-published.png)
+![Опубликованный пост](wordpress-published.png)
 
 Как видно, плагин работает как надо!
 
@@ -293,7 +293,7 @@ Success: Created post 17.
 
 Пишет, что пост создался. Зайдём на сайт и проверим ...
 
-![Опубликованный пост 2](/assets/img/ideal-ci-cd-on-practice1/wordpress-published2.png)
+![Опубликованный пост 2](wordpress-published2.png)
 Версия правильная, теперь разработчики могут сосредоточиться на разработке функционала.
 
 Чтобы остановить запущенные сервисы, воспользуемся командой:

@@ -297,7 +297,7 @@ $ cat old_access.log |head -n5
 
 ```golang
 func matchAllRequirements(parsedLine map[string]string) bool {
-	request := regexp.MustCompile(`GET (.+\.html|/)(\?.*)? HTTP\/1\.[10]`)
+	request := regexp.MustCompile(`GET (.+\.html|\/\d*\/\d*\/\d*\/.*\/|\/\?.*)(\?.*)? HTTP\/1\.[10]`)
 	http_user_agent := regexp.MustCompile(`.*([Bb]ot|vkShare|Google-AMPHTML|feedly|[cC]rawler|[Pp]arser|curl|-).*`)
 	switch {
 	case parsedLine["status"] != "200":
@@ -332,14 +332,15 @@ func main() {
 ```golang
 func TestLogLineOK(t *testing.T) {
 	cases := map[string]bool{
-		`159.203.112.0 - - [05/Jan/2019:22:35:12 +0000] "GET / HTTP/1.0" 200 13444 "-" "Mozilla/5.0 (compatible; NetcraftSurveyAgent/1.0; +info@netcraft.com)"`:                                                                          true,
-		`213.138.93.0 - - [05/Jan/2019:23:36:41 +0000] "GET /2018/08/25/aws-certification-preparation.html HTTP/1.1" 200 7779 "https://www.google.com/" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0"`: true,
-		`213.138.93.0 - - [05/Jan/2019:23:36:42 +0000] "GET / HTTP/1.1" 200 4402 "https://makvaz.com/2018/08/25/aws-certification-preparation.html" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0"`:     true,
-		`199.16.157.0 - - [02/Jan/2019:11:54:10 +0000] "GET /2018/09/25/effective-devops.html HTTP/1.1" 200 10399 "-" "Twitterbot/1.0"`:                                                                                                 false,
-		`199.16.157.0 - - [02/Jan/2019:11:54:10 +0000] "GET /assets/img/header-pic.jpeg HTTP/1.1" 200 696591 "-" "Twitterbot/1.0"`:                                                                                                      false,
-		`54.36.148.0 - - [02/Jan/2019:12:06:17 +0000] "GET /blog/page3/ HTTP/1.1" 200 3586 "-" "Mozilla/5.0 (compatible; AhrefsBot/6.1; +http://ahrefs.com/robot/)"`:                                                                    false,
-		`125.212.217.0 - - [02/Jan/2019:16:03:08 +0000] "GET /robots.txt HTTP/1.1" 200 40 "-" "-"`:                                                                                                                                      false,
-		`40.77.167.0 - - [02/Jan/2019:16:03:59 +0000] "GET /about/ HTTP/1.1" 200 3193 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"`:                                                                    false,
+		`159.203.112.40 - - [05/Jan/2019:22:35:12 +0000] "GET / HTTP/1.0" 200 13444 "-" "Mozilla/5.0 (compatible; NetcraftSurveyAgent/1.0; +info@netcraft.com)"`:                                                                                                        false,
+		`213.138.93.47 - - [05/Jan/2019:23:36:41 +0000] "GET /2018/08/25/aws-certification-preparation.html HTTP/1.1" 200 7779 "https://www.google.com/" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0"`:                               true,
+		`213.138.93.47 - - [05/Jan/2019:23:36:42 +0000] "GET /?facebook HTTP/1.1" 200 4402 "https://makvaz.com/2018/08/25/aws-certification-preparation.html" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0"`:                          true,
+		`199.16.157.180 - - [02/Jan/2019:11:54:10 +0000] "GET /2018/09/25/effective-devops.html HTTP/1.1" 200 10399 "-" "Twitterbot/1.0"`:                                                                                                                               false,
+		`199.16.157.183 - - [02/Jan/2019:11:54:10 +0000] "GET /assets/img/header-pic.jpeg HTTP/1.1" 200 696591 "-" "Twitterbot/1.0"`:                                                                                                                                    false,
+		`54.36.148.130 - - [02/Jan/2019:12:06:17 +0000] "GET /blog/page3/ HTTP/1.1" 200 3586 "-" "Mozilla/5.0 (compatible; AhrefsBot/6.1; +http://ahrefs.com/robot/)"`:                                                                                                  false,
+		`125.212.217.215 - - [02/Jan/2019:16:03:08 +0000] "GET /robots.txt HTTP/1.1" 200 40 "-" "-"`:                                                                                                                                                                    false,
+		`40.77.167.146 - - [02/Jan/2019:16:03:59 +0000] "GET /about/ HTTP/1.1" 200 3193 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"`:                                                                                                  false,
+		`89.64.54.234 - - [25/Feb/2019:19:07:01 +0000] "GET /2019/03/07/ideal-cicd-on-practice1/ HTTP/1.1" 200 11379 "https://makvaz.com/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36"`: true,
 	}
 	for testCase, expectedResult := range cases {
 		parsedLine := ConvertLogLineToMap(testCase)
@@ -409,10 +410,16 @@ func TestAnonymizeIp(t *testing.T) {
 
 Если вы хотите сами поупражняться, то вот вам [мой лог](/assets/other/access.log.zip)
 
+
+
 ## Полезные ссылки
  1. [ Документация по Go ]( https://golang.org/doc/ )
  2. [ Курсы по Go от mail.ru ]( https://www.coursera.org/learn/golang-webservices-1 )
  3. [ Интересный ресурс по Go ]( https://4gophers.ru/articles )
+
+## UPDATE 27.03.2019
+
+После того, как сайт переехал на [Hugo](https://gohugo.io/), ссылки стали выглядеть иначе, например https://makvaz.com/2019/02/14/golang-in-practice1/ , поэтому проверка запросов несколько поменялась. Смотрите функцию `matchAllRequirements` 
 
 ## Полный текст программы
 
@@ -445,7 +452,7 @@ func ConvertLogLineToMap(logLine string) map[string]string {
 	return parsedMap
 }
 func matchAllRequirements(parsedLine map[string]string) bool {
-	request := regexp.MustCompile(`GET (.+\.html|/)(\?.*)? HTTP\/1\.[10]`)
+	request := regexp.MustCompile(`GET (.+\.html|\/\d*\/\d*\/\d*\/.*\/|\/\?.*)(\?.*)? HTTP\/1\.[10]`)
 	http_user_agent := regexp.MustCompile(`.*([Bb]ot|vkShare|Google-AMPHTML|feedly|[cC]rawler|[Pp]arser|curl|-).*`)
 	switch {
 	case parsedLine["status"] != "200":

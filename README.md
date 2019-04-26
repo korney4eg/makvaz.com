@@ -6,3 +6,4 @@
 ```bash
 hugo -d /dest/folder
 ```
+

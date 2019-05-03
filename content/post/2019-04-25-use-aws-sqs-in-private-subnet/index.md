@@ -328,17 +328,21 @@ resource "aws_iam_instance_profile" "sqs_instance_profile" {
 
 Мы будем выводить ip адреса серверов и URL очереди сообщений.
 
+> **UPD 03.05.2019:** Как правильно заметил [alexandrlomov](http://disq.us/p/21k3dto) в outputs переменные не должны содержать пробелов, чтобы их можно было использовать из другого модуля.
+
+> Нашёл [соглашение об именовании переменных и ресурсов в terraform](https://www.terraform-best-practices.com/naming), если коротко, то переменные задаются маленькими буквами с подчёркиванниями, без тире и пробелов.
+
 ```cpp
 #output.tf
-output "jump ip" {
+output "jump_ip" {
   value = "${aws_instance.jump.public_ip}"
 }
 
-output "app instance ip" {
+output "app_instance_ip" {
   value = "${aws_instance.app.private_ip}"
 }
 
-output "SQS url" {
+output "sqs_url" {
   value = "${aws_sqs_queue.queue.id}"
 }
 ```
@@ -359,9 +363,9 @@ Apply complete! Resources: 16 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-SQS url = https://sqs.eu-central-1.amazonaws.com/439502331296/makvaz_queue
-app instance ip = 192.168.2.213
-jump ip = 3.122.103.200
+sqs_url = https://sqs.eu-central-1.amazonaws.com/439502331296/makvaz_queue
+app_instance_ip = 192.168.2.213
+jump_ip = 3.122.103.200
 ```
 
 Подключаемся к **jump server** и пробуем отправить сообщений.

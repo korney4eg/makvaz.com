@@ -1,0 +1,39 @@
+---
+title: "About"
+type: static
+---
+## About me
+
+Hey, my name is Aliaksei Karneyeu!
+
+<img src="/assets/img/about/my_photo.png" alt="My photo" style="
+    padding-left: 0px;
+    padding-right: 0px;
+">
+
+Начал свою карьеру в IT в 2009 году как системный администратор. В 2013 началась движуха с DevOps, с этого момента продолжаю работать и развиваться в этом направлении. Поработал как с приватными облачными сервисами, так и с публичными(AWS, Digital Ocean)
+
+Предпочитаю писать на Ruby, Python, Bash. Сейчас изучаю, golang, так что список языков может скоро пополниться.
+
+
+Если вы хотите пообщаться со мной на тему одной из статей или просто так, то пишите мне:
+
+e-mail: korneevayu (sobaka) gmail.com,
+
+twitter: [ @kornei4 ](https://twitter.com/kornei4)
+
+Телеграмм: [@korney4eg]( https://t.me/korney4eg )
+
+LinkedIn: [aliaksei-karneyeu](https://www.linkedin.com/in/aliaksei-karneyeu-6064a745/)
+
+## О блоге
+
+Этот блог задумывался как выражение идей и мыслей автора, так что вполне возможно, что он будет меняться и перестраиваться.
+
+Главной целью являются:
+
+  - Помочь с проблемой, которую я уже решил
+
+  - То, что мне интересно сохранить
+
+  - Мои мысли и впечатления

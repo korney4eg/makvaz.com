@@ -1,20 +1,73 @@
 baseURL = "https://makvaz.com"
-languageCode = "ru-ru"
-title = "Makvaz"
-
 
 theme = "jeffprod"
 
 paginate = 5
 # uglyurls = true
 
-# disableKinds = ["section"]
+disableKinds = ["section"]
 
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
 
 disqusShortname = "makvaz-com"
 googleAnalytics = "UA-111183533-1"
+
+DefaultContentLanguage = "ru"
+copyright = "Everything is mine"
+
+[languages]
+[languages.en]
+  title = "Makvaz"
+  baseURL = "https://notes.makvaz.com"
+  weight = 4
+  contentDir = "content/en"
+  [[languages.en.menu.main]]
+    url    = "/about/"
+    name   = "About"
+    weight = 2
+    identifier = "about"
+    pre = ""
+  [[languages.en.menu.main]]
+    name = "RSS"
+    weight = 3
+    pre = "<i class='fas fa-rss-square fa-3x'>"
+    url = "/feed.xml"
+    identifier = "RSS"
+  [[languages.en.menu.bottom]]
+    name = "Privacy Policy"
+    weight = 3
+    url = "/privacy/"
+    identifier = "privacy"
+  [languages.en.params]
+    description = "Technical notes and other"
+[languages.ru]
+  title = "Макваз"
+  weight = 2
+  contentDir = "content/ru"
+  baseURL = "https://zametki.makvaz.com"
+  [[languages.ru.menu.main]]
+    url    = "/about/"
+    name   = "О сайте"
+    weight = 2
+    identifier = "about"
+    pre = ""
+  [[languages.ru.menu.main]]
+    name = "RSS"
+    weight = 3
+    pre = "<i class='fas fa-rss-square fa-3x'>"
+    url = "/feed.xml"
+    identifier = "RSS"
+  [[languages.ru.menu.bottom]]
+    name = "Политика конфиденциальности"
+    weight = 3
+    url = "/privacy/"
+    identifier = "privacy"
+
+  [languages.ru.params]
+    description = "Технические заметки и не только"
+
+
 
 enableRobotsTXT = true
 rssLimit = 10
@@ -47,21 +100,10 @@ date  = [":filename", ":default"]
 [author]
     name = "Aliaksei Karneyeu"
 
-sectionPagesMenu = "main"
-[[menu.main]]
-    name = "О сайте"
-    weight = 2
-    url = "/about/"
-    identifier = "about"
-    pre = ""
-[[menu.main]]
-    name = "RSS"
-    weight = 3
-    pre = "<i class='fas fa-rss-square fa-3x'>"
-    url = "/feed.xml"
-    identifier = "RSS"
 
+
+privacy_pack = true
 
 [params]
   featureImg = "assets/img/header-pic.jpeg" 
-  description = "Технические заметки и не только"
+  # description = "Технические заметки и не только"

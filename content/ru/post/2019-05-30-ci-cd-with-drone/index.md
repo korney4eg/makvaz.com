@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Просто о DevOps. Строим идеальный CI/CD на практике. Часть 2.
+draft: true
 archives: "2019"
 tags: [devops,drone]
 ---

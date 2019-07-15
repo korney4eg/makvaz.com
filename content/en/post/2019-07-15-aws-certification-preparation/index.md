@@ -1,7 +1,7 @@
 ---
 layout: post
-title: How I prepared to "AWS Certified SysOps Administrator – Associate"
-draft: true
+title: How I prepared to "AWS Certified SysOps Administrator – Associate" exam.
+draft: false
 archives: "2019"
 tags: [aws, certification]
 ---

@@ -29,6 +29,12 @@ copyright = "Everything is mine"
     identifier = "about"
     pre = ""
   [[languages.en.menu.main]]
+    name = "Русская версия"
+    weight = 1.1
+    pre = "<i class='fas fa-rss-square fa-3x'>"
+    url = "https://zametki.makvaz.com"
+    identifier = "zametki.makvaz.com"
+  [[languages.en.menu.main]]
     name = "RSS"
     weight = 3
     pre = "<i class='fas fa-rss-square fa-3x'>"
@@ -58,6 +64,11 @@ copyright = "Everything is mine"
     pre = "<i class='fas fa-rss-square fa-3x'>"
     url = "/feed.xml"
     identifier = "RSS"
+  [[languages.ru.menu.main]]
+    url    = "https://notes.makvaz.com"
+    name   = "English version"
+    weight = 2
+    identifier = "notes.makvaz.com"
   [[languages.ru.menu.bottom]]
     name = "Политика конфиденциальности"
     weight = 3

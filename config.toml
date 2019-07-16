@@ -47,6 +47,7 @@ copyright = "Everything is mine"
   [languages.en.params]
     description = "Technical notes and other"
     googleAnalyticsCode = "UA-124592546-2"
+    yandexMetrikaCode = "54471976"
 [languages.ru]
   title = "Макваз"
   weight = 2
@@ -78,6 +79,7 @@ copyright = "Everything is mine"
   [languages.ru.params]
     description = "Технические заметки и не только"
     googleAnalyticsCode = "UA-111183533-1"
+    yandexMetrikaCode = "54471931"
 
 
 

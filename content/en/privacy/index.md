@@ -1,173 +1,311 @@
 ---
-title: "Политика конфиденциальности персональных данных"
+title: "PRIVACY POLICY"
 date: 2019-05-28T15:16:16+02:00
 type: static
 ---
-Настоящая Политика конфиденциальности персональных данных (далее – Политика конфиденциальности) действует в отношении всей информации, которую сайт **Makvaz**, (далее – Сайт) расположенный на доменном имени makvaz.com (а также его субдоменах), может получить о Пользователе во время использования сайта makvaz.com (а также его субдоменов), его программ и его продуктов.
-
-## 1. Определение терминов
-
-1.1 В настоящей Политике конфиденциальности используются следующие термины:
-
-1.1.1. «Администрация сайта» (далее – Администрация) – уполномоченные сотрудники на управление сайтом **Makvaz**, которые организуют и (или) осуществляют обработку персональных данных, а также определяет цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными.
-
-1.1.2. «Персональные данные» - любая информация, относящаяся к прямо или косвенно определенному, или определяемому физическому лицу (субъекту персональных данных).
-
-1.1.3. «Обработка персональных данных» - любое действие (операция) или совокупность действий (операций), совершаемых с использованием средств автоматизации или без использования таких средств с персональными данными, включая сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление, уничтожение персональных данных.
-
-1.1.4. «Конфиденциальность персональных данных» - обязательное для соблюдения Оператором или иным получившим доступ к персональным данным лицом требование не допускать их распространения без согласия субъекта персональных данных или наличия иного законного основания.
-
-1.1.5. «Сайт **Makvaz**» - это совокупность связанных между собой веб-страниц, размещенных в сети Интернет по уникальному адресу (URL): makvaz.com, а также его субдоменах.
-
-1.1.6. «Субдомены» - это страницы или совокупность страниц, расположенные на доменах третьего уровня, принадлежащие сайту **Makvaz**, а также другие временные страницы, внизу который указана контактная информация Администрации
-
-1.1.5. «Пользователь сайта **Makvaz** » (далее Пользователь) – лицо, имеющее доступ к сайту **Makvaz**, посредством сети Интернет и использующее информацию, материалы и продукты сайта **Makvaz**.
-
-1.1.7. «Cookies» — небольшой фрагмент данных, отправленный веб-сервером и хранимый на компьютере пользователя, который веб-клиент или веб-браузер каждый раз пересылает веб-серверу в HTTP-запросе при попытке открыть страницу соответствующего сайта.
-
-1.1.8. «IP-адрес» — уникальный сетевой адрес узла в компьютерной сети, через который Пользователь получает доступ на Сайт.
-
-## 2. Общие положения
-
-2.1. Использование сайта **Makvaz** Пользователем означает согласие с настоящей Политикой конфиденциальности и условиями обработки персональных данных Пользователя.
-
-2.2. В случае несогласия с условиями Политики конфиденциальности Пользователь должен прекратить использование сайта **Makvaz** .
-
-2.3. Настоящая Политика конфиденциальности применяется к сайту **Makvaz**. Сайт не контролирует и не несет ответственность за сайты третьих лиц, на которые Пользователь может перейти по ссылкам, доступным на сайте **Makvaz**.
-
-2.4. Администрация не проверяет достоверность персональных данных, предоставляемых Пользователем.
-
-## 3. Предмет политики конфиденциальности
-
-3.1. Настоящая Политика конфиденциальности устанавливает обязательства Администрации по неразглашению и обеспечению режима защиты конфиденциальности персональных данных, которые Пользователь предоставляет по запросу Администрации при регистрации на сайте **Makvaz** или при подписке на информационную e-mail рассылку.
-
-3.2. Персональные данные, разрешённые к обработке в рамках настоящей Политики конфиденциальности, предоставляются Пользователем путём заполнения форм на сайте **Makvaz** и включают в себя следующую информацию:
-
-3.2.3. адрес электронной почты (e-mail)
-
-3.2.4. место жительство Пользователя (при необходимости)
-
-3.2.5. фотографию (при необходимости)
-
-
-3.3. Сайт защищает Данные, которые автоматически передаются при посещении страниц:
-
-- IP адрес;
-
-- информация из cookies;
-
-- информация о браузере
-
-- время доступа;
-
-- реферер (адрес предыдущей страницы).
-
-3.3.1. Отключение cookies может повлечь невозможность доступа к частям сайта , требующим авторизации.
-
-3.3.2. Сайт осуществляет сбор статистики об IP-адресах своих посетителей. Данная информация используется с целью предотвращения, выявления и решения технических проблем.
-
-3.4. Любая иная персональная информация неоговоренная выше (история посещения, используемые браузеры, операционные системы и т.д.) подлежит надежному хранению и нераспространению, за исключением случаев, предусмотренных в п.п. 5.2. настоящей Политики конфиденциальности.
-
-## 4. Цели сбора персональной информации пользователя
-
-4.1. Персональные данные Пользователя Администрация может использовать в целях:
-
-4.1.1. Идентификации Пользователя, зарегистрированного на сайте **Makvaz** для его дальнейшей авторизации.
-
-4.1.2. Предоставления Пользователю доступа к персонализированным данным сайта **Makvaz**.
-
-4.1.3. Установления с Пользователем обратной связи, включая направление уведомлений, запросов, касающихся использования сайта **Makvaz**, обработки запросов и заявок от Пользователя.
-
-4.1.4. Определения места нахождения Пользователя для обеспечения безопасности, предотвращения мошенничества.
-
-4.1.5. Подтверждения достоверности и полноты персональных данных, предоставленных Пользователем.
-
-4.1.6. Создания учетной записи для использования частей сайта **Makvaz**, если Пользователь дал согласие на создание учетной записи.
-
-4.1.7. Уведомления Пользователя по электронной почте.
-
-4.1.8. Предоставления Пользователю эффективной технической поддержки при возникновении проблем, связанных с использованием сайта **Makvaz**.
-
-4.1.9. Предоставления Пользователю с его согласия специальных предложений, новостной рассылки и иных сведений от имени сайта **Makvaz**.
-
-## 5. Способы и сроки обработки персональной информации
-
-5.1. Обработка персональных данных Пользователя осуществляется без ограничения срока, любым законным способом, в том числе в информационных системах персональных данных с использованием средств автоматизации или без использования таких средств.
-
-5.2. Персональные данные Пользователя могут быть переданы уполномоченным органам государственной власти Российской Федерации только по основаниям и в порядке, установленным законодательством Российской Федерации.
-
-5.3. При утрате или разглашении персональных данных Администрация вправе не информировать Пользователя об утрате или разглашении персональных данных.
-
-5.4. Администрация принимает необходимые организационные и технические меры для защиты персональной информации Пользователя от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения, а также от иных неправомерных действий третьих лиц.
-
-5.5. Администрация совместно с Пользователем принимает все необходимые меры по предотвращению убытков или иных отрицательных последствий, вызванных утратой или разглашением персональных данных Пользователя.
-
-## 6. Права и обязанности сторон
-
-6.1. Пользователь вправе:
-
-6.1.1. Принимать свободное решение о предоставлении своих персональных данных, необходимых для использования сайта **Makvaz**, и давать согласие на их обработку.
-
-6.1.2. Обновить, дополнить предоставленную информацию о персональных данных в случае изменения данной информации.
-
-6.1.3. Пользователь имеет право на получение у Администрации информации, касающейся обработки его персональных данных, если такое право не ограничено в соответствии с федеральными законами. Пользователь вправе требовать от Администрации уточнения его персональных данных, их блокирования или уничтожения в случае, если персональные данные являются неполными, устаревшими, неточными, незаконно полученными или не являются необходимыми для заявленной цели обработки, а также принимать предусмотренные законом меры по защите своих прав. Для этого достаточно уведомить Администрацию по указаному E-mail адресу.
-
-6.2. Администрация обязана:
-
-6.2.1. Использовать полученную информацию исключительно для целей, указанных в п. 4 настоящей Политики конфиденциальности.
-
-6.2.2. Обеспечить хранение конфиденциальной информации в тайне, не разглашать без предварительного письменного разрешения Пользователя, а также не осуществлять продажу, обмен, опубликование, либо разглашение иными возможными способами переданных персональных данных Пользователя, за исключением п.п. 5.2. настоящей Политики Конфиденциальности.
-
-6.2.3. Принимать меры предосторожности для защиты конфиденциальности персональных данных Пользователя согласно порядку, обычно используемого для защиты такого рода информации в существующем деловом обороте.
-
-6.2.4. Осуществить блокирование персональных данных, относящихся к соответствующему Пользователю, с момента обращения или запроса Пользователя, или его законного представителя либо уполномоченного органа по защите прав субъектов персональных данных на период проверки, в случае выявления недостоверных персональных данных или неправомерных действий.
-Ответственность сторон
-
-7.1. Администрация, не исполнившая свои обязательства, несёт ответственность за убытки, понесённые Пользователем в связи с неправомерным использованием персональных данных, в соответствии с законодательством Российской Федерации, за исключением случаев, предусмотренных п.п. 5.2. и 7.2. настоящей Политики Конфиденциальности.
-
-7.2. В случае утраты или разглашения Конфиденциальной информации Администрация не несёт ответственность, если данная конфиденциальная информация:
-
-7.2.1. Стала публичным достоянием до её утраты или разглашения.
-
-7.2.2. Была получена от третьей стороны до момента её получения Администрацией Ресурса.
-
-7.2.3. Была разглашена с согласия Пользователя.
-
-7.3. Пользователь несет полную ответственность за соблюдение требований законодательства РФ, в том числе законов о рекламе, о защите авторских и смежных прав, об охране товарных знаков и знаков обслуживания, но не ограничиваясь перечисленным, включая полную ответственность за содержание и форму материалов.
-
-7.4. Пользователь признает, что ответственность за любую информацию (в том числе, но не ограничиваясь: файлы с данными, тексты и т. д.), к которой он может иметь доступ как к части сайта **Makvaz**, несет лицо, предоставившее такую информацию.
-
-7.5. Пользователь соглашается, что информация, предоставленная ему как часть сайта **Makvaz**, может являться объектом интеллектуальной собственности, права на который защищены и принадлежат другим Пользователям, партнерам или рекламодателям, которые размещают такую информацию на сайте **Makvaz**.
-Пользователь не вправе вносить изменения, передавать в аренду, передавать на условиях займа, продавать, распространять или создавать производные работы на основе такого Содержания (полностью или в части), за исключением случаев, когда такие действия были письменно прямо разрешены собственниками такого Содержания в соответствии с условиями отдельного соглашения.
-
-7.6. В отношение текстовых материалов (статей, публикаций, находящихся в свободном публичном доступе на сайте **Makvaz**) допускается их распространение при условии, что будет дана ссылка на Сайт.
-
-7.7. Администрация не несет ответственности перед Пользователем за любой убыток или ущерб, понесенный Пользователем в результате удаления, сбоя или невозможности сохранения какого-либо Содержания и иных коммуникационных данных, содержащихся на сайте **Makvaz** или передаваемых через него.
-
-7.8. Администрация не несет ответственности за любые прямые или косвенные убытки, произошедшие из-за: использования либо невозможности использования сайта, либо отдельных сервисов; несанкционированного доступа к коммуникациям Пользователя; заявления или поведение любого третьего лица на сайте.
-
-7.9. Администрация не несет ответственность за какую-либо информацию, размещенную пользователем на сайте **Makvaz**, включая, но не ограничиваясь: информацию, защищенную авторским правом, без прямого согласия владельца авторского права.
-
-## 8. Разрешение споров
-
-8.1. До обращения в суд с иском по спорам, возникающим из отношений между Пользователем и Администрацией, обязательным является предъявление претензии (письменного предложения или предложения в электронном виде о добровольном урегулировании спора).
-
-8.2. Получатель претензии в течение 30 календарных дней со дня получения претензии, письменно или в электронном виде уведомляет заявителя претензии о результатах рассмотрения претензии.
-
-8.3. При не достижении соглашения спор будет передан на рассмотрение Арбитражного суда г. City.
-
-8.4. К настоящей Политике конфиденциальности и отношениям между Пользователем и Администрацией применяется действующее законодательство Российской Федерации.
-
-## 9. Дополнительные условия
-
-9.1. Администрация вправе вносить изменения в настоящую Политику конфиденциальности без согласия Пользователя.
-
-9.2. Новая Политика конфиденциальности вступает в силу с момента ее размещения на сайте **Makvaz**, если иное не предусмотрено новой редакцией Политики конфиденциальности.
-
-9.3. Все предложения или вопросы касательно настоящей Политики конфиденциальности следует сообщать по адресу: adsf@dasf.ru
-
-9.4. Действующая Политика конфиденциальности размещена на странице по адресу [ https://makvaz.com/privacy/ ](/privacy/)
-
-Обновлено: 28 Мая 2019 года
-
-г. Краков, Алексей Корнеев
+Effective date: 05/28/2020
+ 
+## 1.Introduction
+ 
+Welcome to Makvaz technical notes.
+ 
+Makvaz technical notes (“us”, “we”, or “our”) operates https://notes.makvaz.com (hereinafter referred to as “Service”).
+ 
+Our Privacy Policy governs your visit to https://notes.makvaz.com, and explains how we collect, safeguard and disclose information that results from your use of our Service. 
+ 
+We use your data to provide and improve Service. By using Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, the terms used in this Privacy Policy have the same meanings as in our Terms and Conditions.
+ 
+Our Terms and Conditions (“Terms”) govern all use of our Service and together with the Privacy Policy constitutes your agreement with us (“agreement”).
+ 
+## 2. Definitions
+ 
+SERVICE means the https://notes.makvaz.com website operated by Makvaz technical notes.
+ 
+PERSONAL DATA means data about a living individual who can be identified from those data (or from those and other information either in our possession or likely to come into our possession).
+ 
+USAGE DATA is data collected automatically either generated by the use of Service or from Service infrastructure itself (for example, the duration of a page visit).
+ 
+COOKIES are small files stored on your device (computer or mobile device).
+ 
+DATA CONTROLLER means a natural or legal person who (either alone or jointly or in common with other persons) determines the purposes for which and the manner in which any personal data are, or are to be, processed. For the purpose of this Privacy Policy, we are a Data Controller of your data.
+ 
+DATA PROCESSORS (OR SERVICE PROVIDERS) means any natural or legal person who processes the data on behalf of the Data Controller. We may use the services of various Service Providers in order to process your data more effectively.
+ 
+DATA SUBJECT is any living individual who is the subject of Personal Data.
+ 
+THE USER is the individual using our Service. The User corresponds to the Data Subject, who is the subject of Personal Data.
+ 
+## 3. Information Collection and Use
+ 
+We collect several different types of information for various purposes to provide and improve our Service to you.
+ 
+## 4. Types of Data Collected
+ 
+Personal Data
+While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you (“Personal Data”). Personally identifiable information may include, but is not limited to:
+ 
+a. Email address
+ 
+Usage Data
+We may also collect information that your browser sends whenever you visit our Service or when you access Service by or through a mobile device (“Usage Data”).
+ 
+This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.
+ 
+When you access Service with a mobile device, this Usage Data may include information such as the type of mobile device you use, your mobile device unique ID, the IP address of your mobile device, your mobile operating system, the type of mobile Internet browser you use, unique device identifiers and other diagnostic data.
+ 
+Tracking Cookies Data
+We use cookies and similar tracking technologies to track the activity on our Service and we hold certain information.
+ 
+Cookies are files with a small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device. Other tracking technologies are also used such as beacons, tags and scripts to collect and track information and to improve and analyze our Service.
+ 
+You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.
+ 
+Examples of Cookies we use:
+ 
+a. Session Cookies: We use Session Cookies to operate our Service.
+ 
+b. Preference Cookies: We use Preference Cookies to remember your preferences and various settings.
+ 
+c. Security Cookies: We use Security Cookies for security purposes.
+ 
+d. Advertising Cookies: Advertising Cookies are used to serve you with advertisements that may be relevant to you and your interests.
+ 
+## 5. Use of Data
+ 
+Makvaz technical notes uses the collected data for various purposes:
+ 
+a. to provide and maintain our Service;
+ 
+b. to notify you about changes to our Service; 
+ 
+c. to allow you to participate in interactive features of our Service when you choose to do so; 
+ 
+d. to provide customer support; 
+ 
+e. to gather analysis or valuable information so that we can improve our Service; 
+ 
+f. to monitor the usage of our Service;
+ 
+g. to detect, prevent and address technical issues;
+ 
+h. to fulfill any other purpose for which you provide it;
+ 
+i. to carry out our obligations and enforce our rights arising from any contracts entered into between you and us, including for billing and collection;
+ 
+j. to provide you with notices about your account and/or subscription, including expiration and renewal notices, email-instructions, etc.;
+ 
+k. to provide you with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless you have opted not to receive such information;
+ 
+l. in any other way we may describe when you provide the information;
+ 
+m. for any other purpose with your consent. 
+ 
+## 6. Retention of Data
+ 
+We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.
+ 
+We will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period, except when this data is used to strengthen the security or to improve the functionality of our Service, or we are legally obligated to retain this data for longer time periods.
+ 
+## 7. Transfer of Data
+ 
+Your information, including Personal Data, may be transferred to – and maintained on – computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction.
+ 
+If you are located outside United States and choose to provide information to us, please note that we transfer the data, including Personal Data, to United States and process it there.
+ 
+Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.
+ 
+Makvaz technical notes will take all the steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organisation or a country unless there are adequate controls in place including the security of your data and other personal information.
+ 
+## 8. Disclosure of Data
+ 
+We may disclose personal information that we collect, or you provide:
+ 
+a. Disclosure for Law Enforcement.
+Under certain circumstances, we may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities.
+ 
+b. Business Transaction.
+If we or our subsidiaries are involved in a merger, acquisition or asset sale, your Personal Data may be transferred.
+ 
+c. Other cases. We may disclose your information also:
+ 
+i. if we believe disclosure is necessary or appropriate to protect the rights, property, or safety of the Company, our customers, or others.
+ 
+## 9. Security of Data
+ 
+The security of your data is important to us but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.
+ 
+## 10. Your Data Protection Rights Under General Data Protection Regulation (GDPR)
+ 
+If you are a resident of the European Union (EU) and European Economic Area (EEA), you have certain data protection rights, covered by GDPR. – See more at https://eur-lex.europa.eu/eli/reg/2016/679/oj 
+ 
+We aim to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.
+ 
+If you wish to be informed what Personal Data we hold about you and if you want it to be removed from our systems, please email us at korneevayu+makvaznotes@gmail.com. 
+ 
+In certain circumstances, you have the following data protection rights:
+ 
+a. the right to access, update or to delete the information we have on you;
+ 
+b. the right of rectification. You have the right to have your information rectified if that information is inaccurate or incomplete;
+ 
+c. the right to object. You have the right to object to our processing of your Personal Data;
+ 
+d. the right of restriction. You have the right to request that we restrict the processing of your personal information;
+ 
+e. the right to data portability. You have the right to be provided with a copy of your Personal Data in a structured, machine-readable and commonly used format;
+ 
+f. the right to withdraw consent. You also have the right to withdraw your consent at any time where we rely on your consent to process your personal information;
+ 
+Please note that we may ask you to verify your identity before responding to such requests. Please note, we may not able to provide Service without some necessary data.
+ 
+You have the right to complain to a Data Protection Authority about our collection and use of your Personal Data. For more information, please contact your local data protection authority in the European Economic Area (EEA).
+ 
+## 11. Your Data Protection Rights under the California Privacy Protection Act (CalOPPA)
+ 
+CalOPPA is the first state law in the nation to require commercial websites and online services to post a privacy policy. The law’s reach stretches well beyond California to require a person or company in the United States (and conceivable the world) that operates websites collecting personally identifiable information from California consumers to post a conspicuous privacy policy on its website stating exactly the information being collected and those individuals with whom it is being shared, and to comply with this policy. – See more at: https://consumercal.org/about-cfc/cfc-education-foundation/california-online-privacy-protection-act-caloppa-3/ 
+ 
+According to CalOPPA we agree to the following:
+ 
+a. users can visit our site anonymously;
+ 
+b. our Privacy Policy link includes the word “Privacy”, and can easily be found on the page specified above on the home page of our website;
+ 
+c. users will be notified of any privacy policy changes on our Privacy Policy Page;
+ 
+d. users are able to change their personal information by emailing us at korneevayu+makvaznotes@gmail.com. 
+ 
+Our Policy on “Do Not Track” Signals:
+ 
+We honor Do Not Track signals and do not track, plant cookies, or use advertising when a Do Not Track browser mechanism is in place. Do Not Track is a preference you can set in your web browser to inform websites that you do not want to be tracked. 
+ 
+You can enable or disable Do Not Track by visiting the Preferences or Settings page of your web browser.
+ 
+## 12. Your Data Protection Rights under the California Consumer Privacy Act (CCPA)
+ 
+If you are a California resident, you are entitled to learn what data we collect about you, ask to delete your data and not to sell (share) it. To exercise your data protection rights, you can make certain requests and ask us:
+ 
+a. What personal information we have about you. If you make this request, we will return to you:
+ 
+1. The categories of personal information we have collected about you.
+ 
+2. The categories of sources from which we collect your personal information.
+ 
+3. The business or commercial purpose for collecting or selling your personal information.
+ 
+4. he categories of third parties with whom we share personal information.
+ 
+5. The specific pieces of personal information we have collected about you.
+ 
+6. A list of categories of personal information that we have sold, along with the category of any other company we sold it to. If we have not sold your personal information, we will inform you of that fact.
+ 
+7. A list of categories of personal information that we have disclosed for a business purpose, along with the category of any other company we shared it with.
+ 
+Please note, you are entitled to ask us to provide you with this information up to two times in a rolling twelve-month period. When you make this request, the information provided may be limited to the personal information we collected about you in the previous 12 months.
+ 
+b. To delete your personal information. If you make this request, we will delete the personal information we hold about you as of the date of your request from our records and direct any service providers to do the same. In some cases, deletion may be accomplished through de-identification of the information. If you choose to delete your personal information, you may not be able to use certain functions that require your personal information to operate. 
+ 
+c. To stop selling your personal information. We don't sell or rent your personal information to any third parties for any purpose. You are the only owner of your Personal Data and can request disclosure or deletion at any time.
+ 
+Please note, if you ask us to delete or stop selling your data, it may impact your experience with us, and you may not be able to participate in certain programs or membership services which require the usage of your personal information to function. But in no circumstances, we will discriminate against you for exercising your rights.
+ 
+To exercise your California data protection rights described above, please send your request(s) by one of the following means:
+ 
+By visiting this page on our website: [●]
+ 
+Your data protection rights, described above, are covered by the CCPA, short for the California Consumer Privacy Act. To find out more, visit the official California Legislative Information website. The CCPA took effect on 01/01/2020. 
+ 
+## 13. Service Providers
+ 
+We may employ third party companies and individuals to facilitate our Service (“Service Providers”), provide Service on our behalf, perform Service-related services or assist us in analysing how our Service is used.
+ 
+These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
+ 
+## 14. Analytics
+ 
+We may use third-party Service Providers to monitor and analyze the use of our Service.
+ 
+Google Analytics
+Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualise and personalise the ads of its own advertising network.
+ 
+For more information on the privacy practices of Google, please visit the Google Privacy Terms web page: https://policies.google.com/privacy?hl=en
+ 
+We also encourage you to review the Google's policy for safeguarding your data: https://support.google.com/analytics/answer/6004245.
+ 
+## 15. CI/CD tools
+ 
+We may use third-party Service Providers to automate the development process of our Service. 
+ 
+GitHub
+ 
+GitHub is provided by GitHub, Inc.
+ 
+GitHub is a development platform to host and review code, manage projects, and build software.
+ 
+For more information on what data GitHub collects for what purpose and how the protection of the data is ensured, please visit GitHub Privacy Policy page: https://help.github.com/en/articles/github-privacy-statement.
+ 
+## 16. Advertising
+ 
+We may use third-party Service Providers to show advertisements to you to help support and maintain our Service.
+ 
+Google AdSense DoubleClick Cookie
+Google, as a third party vendor, uses cookies to serve ads on our Service. Google's use of the DoubleClick cookie enables it and its partners to serve ads to our users based on their visit to our Service or other websites on the Internet.
+ 
+You may opt out of the use of the DoubleClick Cookie for interest-based advertising by visiting the Google Ads Settings web page: http://www.google.com/ads/preferences/
+ 
+## 17. Behavioral Remarketing
+ 
+Makvaz technical notes uses remarketing services to advertise on third party websites to you after you visited our Service. We and our third-party vendors use cookies to inform, optimise and serve ads based on your past visits to our Service.
+ 
+Google Ads (AdWords)
+Google Ads (AdWords) remarketing service is provided by Google Inc.
+ 
+You can opt-out of Google Analytics for Display Advertising and customize the Google Display Network ads by visiting the Google Ads Settings page: http://www.google.com/settings/ads
+ 
+Google also recommends installing the Google Analytics Opt-out Browser Add-on – https://tools.google.com/dlpage/gaoptout – for your web browser. Google Analytics Opt-out Browser Add-on provides visitors with the ability to prevent their data from being collected and used by Google Analytics.
+ 
+For more information on the privacy practices of Google, please visit the Google Privacy Terms web page: https://policies.google.com/privacy?hl=en
+ 
+Twitter
+Twitter remarketing service is provided by Twitter Inc.
+ 
+You can opt-out from Twitter's interest-based ads by following their instructions: https://support.twitter.com/articles/20170405
+ 
+You can learn more about the privacy practices and policies of Twitter by visiting their Privacy Policy page: https://twitter.com/privacy
+ 
+Facebook
+Facebook remarketing service is provided by Facebook Inc.
+ 
+You can learn more about interest-based advertising from Facebook by visiting this page: https://www.facebook.com/help/164968693837950
+ 
+To opt-out from Facebook's interest-based ads, follow these instructions from Facebook: https://www.facebook.com/help/568137493302217
+ 
+Facebook adheres to the Self-Regulatory Principles for Online Behavioural Advertising established by the Digital Advertising Alliance. You can also opt-out from Facebook and other participating companies through the Digital Advertising Alliance in the USA http://www.aboutads.info/choices/, the Digital Advertising Alliance of Canada in Canada http://youradchoices.ca/ or the European Interactive Digital Advertising Alliance in Europe http://www.youronlinechoices.eu/, or opt-out using your mobile device settings.
+ 
+For more information on the privacy practices of Facebook, please visit Facebook's Data Policy: https://www.facebook.com/privacy/explanation
+ 
+ 
+## 18. Links to Other Sites
+ 
+Our Service may contain links to other sites that are not operated by us. If you click a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
+ 
+We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.
+ 
+## 19. Children's Privacy
+ 
+Our Services are not intended for use by children under the age of 13 (“Children”). 
+ 
+We do not knowingly collect personally identifiable information from Children under 13. If you become aware that a Child has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from Children without verification of parental consent, we take steps to remove that information from our servers.
+ 
+## 20. Changes to This Privacy Policy
+ 
+We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
+ 
+We will let you know via email and/or a prominent notice on our Service, prior to the change becoming effective and update “effective date” at the top of this Privacy Policy.
+ 
+You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+ 
+## 21. Contact Us
+ 
+If you have any questions about this Privacy Policy, please contact us:
+ 
+By email: korneevayu+makvaznotes@gmail.com.

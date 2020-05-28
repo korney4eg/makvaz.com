@@ -6,19 +6,27 @@ type: static
 
 Hey, my name is Aliaksei Karneyeu!
 
-<img src="/assets/img/about/my_photo.png" alt="My photo" style="
-    padding-left: 0px;
-    padding-right: 0px;
-">
+![My photo](my_photo.png)
 
-Начал свою карьеру в IT в 2009 году как системный администратор. В 2013 началась движуха с DevOps, с этого момента продолжаю работать и развиваться в этом направлении. Поработал как с приватными облачными сервисами, так и с публичными(AWS, Digital Ocean)
+In IT started in 2009 as Windows XP administrator, learned Linux. Accidentally ended up in DevOps in 2013, since then working on that field.
 
-Предпочитаю писать на Ruby, Python, Bash. Сейчас изучаю, golang, так что список языков может скоро пополниться.
+Worked with public cloud:
+ - AWS
+ - Digital Ocean
 
+Like to play and experiment with kubernetes, unless starting it in the work.
 
-Если вы хотите пообщаться со мной на тему одной из статей или просто так, то пишите мне:
+Favorite programming languages:
+ - Golang
+ - Ruby
+ - Python
+ - Bash
+
+If you need to contact me or ask any questions:
 
 e-mail: korneevayu (sobaka) gmail.com,
+
+GitHub: [ korney4eg ](github.com/korney4eg/)
 
 twitter: [ @kornei4 ](https://twitter.com/kornei4)
 
@@ -26,14 +34,22 @@ twitter: [ @kornei4 ](https://twitter.com/kornei4)
 
 LinkedIn: [aliaksei-karneyeu](https://www.linkedin.com/in/aliaksei-karneyeu-6064a745/)
 
-## О блоге
+## Badges
 
-Этот блог задумывался как выражение идей и мыслей автора, так что вполне возможно, что он будет меняться и перестраиваться.
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="d20e7506-e328-48fa-b148-730cf3532878" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
 
-Главной целью являются:
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="144df61c-c194-4608-a2aa-7272dce1b6ca" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
 
-  - Помочь с проблемой, которую я уже решил
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="adf47e08-1eb4-41c5-9e6a-582de0413df0" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
 
-  - То, что мне интересно сохранить
+## About this blog
 
-  - Мои мысли и впечатления
+Here I would like to share my ideas and experience.
+
+Main purpose:
+
+  - Help with a problem that I solved sometime
+
+  - Note something that is interesting for me
+
+  - My ideas and impressions

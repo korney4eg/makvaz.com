@@ -114,7 +114,8 @@ date  = [":filename", ":default"]
 [author]
     name = "Aliaksei Karneyeu"
 
-
+[markup.goldmark.renderer]
+unsafe= true
 
 privacy_pack = true
 

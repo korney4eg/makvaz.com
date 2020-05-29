@@ -9,6 +9,8 @@ _**Это одна из статей из категории чтобы само
 
 _Иcпользовать инстансы в облаке Amazon с доступом в интернет не всегда возможно или даже просто небезопасно. Для обновления репозиториев или скачивания контейнеров используются внутренние сервисы. Для обращения к какому-нибудь API в интренете поднимают или NAT-gateway, или Proxy-сервер. Если вам нужен один из сервисов AWS, например SQS или S3, то как быть в этом случае? Об этом и будет сегоднящняя статья._  <!--more-->
 
+__**UPDATE 29.05.2020: Код был обновлён, теперь он работает на terraform 0.12.**__
+
 ## Теория
 
 ### Проблема
@@ -126,7 +128,7 @@ data "aws_ami" "amazon-linux-2" {
 ```cpp
 #public_subnet.tf
 resource "aws_subnet" "public" {
-  vpc_id                  = "${aws_vpc.main.id}"
+  vpc_id                  = aws_vpc.main.id
   cidr_block              = "192.168.1.0/24"
   map_public_ip_on_launch = "true"
 
@@ -136,15 +138,15 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_internet_gateway" "gw" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
 }
 
 resource "aws_route_table" "route_table_public" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.gw.id}"
+    gateway_id = aws_internet_gateway.gw.id
   }
 
   tags = {
@@ -153,8 +155,8 @@ resource "aws_route_table" "route_table_public" {
 }
 
 resource "aws_route_table_association" "associate_public_subnet" {
-  subnet_id      = "${aws_subnet.public.id}"
-  route_table_id = "${aws_route_table.route_table_public.id}"
+  subnet_id      = aws_subnet.public.id
+  route_table_id = aws_route_table.route_table_public.id
 }
 ```
 
@@ -171,7 +173,7 @@ resource "aws_route_table_association" "associate_public_subnet" {
 resource "aws_security_group" "jump_sg" {
   name        = "in_ssh_all_out_all"
   description = "Allow incoming SSH and all outgoing"
-  vpc_id      = "${aws_vpc.main.id}"
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 22
@@ -189,14 +191,14 @@ resource "aws_security_group" "jump_sg" {
 }
 
 resource "aws_instance" "jump" {
-  ami                         = "${data.aws_ami.amazon-linux-2.id}"
+  ami                         = data.aws_ami.amazon-linux-2.id
   instance_type               = "t2.micro"
-  subnet_id                   = "${aws_subnet.public.id}"
+  subnet_id                   = aws_subnet.public.id
   key_name                    = "deployer-key"
-  vpc_security_group_ids      = ["${aws_security_group.jump_sg.id}"]
+  vpc_security_group_ids      = [aws_security_group.jump_sg.id]
   associate_public_ip_address = true
-  depends_on                  = ["aws_internet_gateway.gw"]
-  iam_instance_profile        = "${aws_iam_instance_profile.sqs_test_profile.name}"
+  depends_on                  = [aws_internet_gateway.gw]
+  iam_instance_profile        = aws_iam_instance_profile.sqs_instance_profile.name
 
   tags = {
     Name = "Public"
@@ -209,7 +211,7 @@ resource "aws_instance" "jump" {
 ```cpp
 #private_subnet.tf
 resource "aws_subnet" "private" {
-  vpc_id     = "${aws_vpc.main.id}"
+  vpc_id     = aws_vpc.main.id
   cidr_block = "192.168.2.0/24"
 
   tags = {
@@ -227,13 +229,13 @@ resource "aws_subnet" "private" {
 resource "aws_security_group" "app_sg" {
   name        = "in_ssh_out_all"
   description = "Allow incoming SSH from Jump host and all outgoing to subnet"
-  vpc_id      = "${aws_vpc.main.id}"
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.jump_sg.id}"]
+    security_groups = [aws_security_group.jump_sg.id]
   }
 
   egress {
@@ -245,12 +247,12 @@ resource "aws_security_group" "app_sg" {
 }
 
 resource "aws_instance" "app" {
-  ami                    = "${data.aws_ami.amazon-linux-2.id}"
+  ami                    = data.aws_ami.amazon-linux-2.id
   instance_type          = "t2.micro"
-  subnet_id              = "${aws_subnet.private.id}"
+  subnet_id              = aws_subnet.private.id
   key_name               = "deployer-key"
-  vpc_security_group_ids = ["${aws_security_group.app_sg.id}"]
-  iam_instance_profile   = "${aws_iam_instance_profile.sqs_instance_profile.name}"
+  vpc_security_group_ids = [aws_security_group.app_sg.id]
+  iam_instance_profile   = aws_iam_instance_profile.sqs_instance_profile.name
 
   tags = {
     Name = "Private"
@@ -290,6 +292,7 @@ resource "aws_iam_role" "ec2_sqs_access_role" {
  ]
 }
 EOF
+
 }
 
 resource "aws_iam_policy" "sqs_policy" {
@@ -308,17 +311,18 @@ resource "aws_iam_policy" "sqs_policy" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_policy_attachment" "attach_sqs_policy" {
   name       = "attach_sqs_policy"
-  roles      = ["${aws_iam_role.ec2_sqs_access_role.name}"]
-  policy_arn = "${aws_iam_policy.sqs_policy.arn}"
+  roles      = [aws_iam_role.ec2_sqs_access_role.name]
+  policy_arn = aws_iam_policy.sqs_policy.arn
 }
 
 resource "aws_iam_instance_profile" "sqs_instance_profile" {
   name = "sqs_instance_profile"
-  role = "${aws_iam_role.ec2_sqs_access_role.name}"
+  role = aws_iam_role.ec2_sqs_access_role.name
 }
 ```
 
@@ -334,16 +338,16 @@ resource "aws_iam_instance_profile" "sqs_instance_profile" {
 
 ```cpp
 #output.tf
-output "jump_ip" {
-  value = "${aws_instance.jump.public_ip}"
+output "jump ip" {
+  value = aws_instance.jump.public_ip
 }
 
-output "app_instance_ip" {
-  value = "${aws_instance.app.private_ip}"
+output "app instance ip" {
+  value = aws_instance.app.private_ip
 }
 
-output "sqs_url" {
-  value = "${aws_sqs_queue.queue.id}"
+output "SQS url" {
+  value = aws_sqs_queue.queue.id
 }
 ```
 
@@ -454,25 +458,24 @@ data "aws_vpc_endpoint_service" "test-queue-vpce-service" {
 }
 
 resource "aws_vpc_endpoint" "test-queue-vpce" {
-  vpc_id            = "${aws_vpc.main.id}"
-  service_name      = "${ data.aws_vpc_endpoint_service.test-queue-vpce-service.service_name }"
-  vpc_endpoint_type = "Interface"
-
-  security_group_ids  = ["${aws_security_group.sqs_sg.id}"]
-  subnet_ids          = ["${aws_subnet.private.id}"]
+  vpc_id              = aws_vpc.main.id
+  service_name        = data.aws_vpc_endpoint_service.test-queue-vpce-service.service_name
+  vpc_endpoint_type   = "Interface"
+  security_group_ids  = [aws_security_group.sqs_sg.id]
+  subnet_ids          = [aws_subnet.private.id]
   private_dns_enabled = "true"
 }
 
 resource "aws_security_group" "sqs_sg" {
   name        = "sqs_sg"
   description = "Allow incoming connection to SQS from app server"
-  vpc_id      = "${aws_vpc.main.id}"
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port       = 443
     to_port         = 443
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.app_sg.id}"]
+    security_groups = [aws_security_group.app_sg.id]
   }
 }
 ```

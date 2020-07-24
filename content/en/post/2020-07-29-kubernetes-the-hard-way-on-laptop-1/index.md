@@ -3,28 +3,25 @@ layout: post
 title: Kubernetes The Hard Way on your laptop. Intro.
 archives: "2020"
 tags: [kubernetes, howto]
-tocEnabled: false
+tocEnabled: true
 ---
-_For better understanding how kubernetes works I like to setup it myself. So here I will show how to setup kubernetes on the laptop using VirtualBox and Vagrant._
-
+_One of big steps in my preparation to CKA exam was to deploy kubernetes cluster locally. I started with great [guide from Kelsey Hightower called "Kubernetes The Hard Way"](https://github.com/kelseyhightower/kubernetes-the-hard-way)(or simply **KTHW**) and found out that it was created only for Google Cloud Platform. I decided to adopt it to my needs so cluster could be running on laptop. In this series of posts I gonna show how to do this._
 <!--more-->
-One of big steps in preparation to CKA exam was to deploy kubernetes cluster locally. I started with great [guide from Kelsey Hightower called "Kubernetes The Hard Way"](https://github.com/kelseyhightower/kubernetes-the-hard-way)(or simply **KTHW**) and found out that it was created only for Google Cloud Platform. I decided to adopt it to my needs so cluster could be running on laptop (also work on PC).
+> Before going through this How-to I would recommend reading [Kubernetes concepts](https://kubernetes.io/docs/concepts/architecture/), so that this posts would become more understandeble. Anyway if you faced any issues during this lab feel free to ask in comments.
 
 This How-to is pretty big so it was splited into serveral parts.
 
+## Structure of this How-to:
 
-## How-to structure:
-
-1. [Intro. How cluster will look like. Network overview.](#)
-2. Setup Vagrant, VirtualBox, downloading software
-3. Provisioning Compute Resources
+1. [Intro. Cluster overview. Prepare local environment](#)
+2. Setup Vagrant, VirtualBox. Create Virtual Machines.
 4. Provisioning all needed Certificates and keys, generating Kubernetes configuration files
 5. Bootstrapping the etcd Cluster. Bootstrapping the Kubernetes Control Plane
 7. Bootstrapping the Kubernetes Worker Nodes
 8. Setup kubectl, provision needed Add-ons and plugins. Testing
 
 
-## How cluster will look like
+## Cluster overview
 
 ![Kubernetes The Hard Way on laptop](kthw_diagram.png)
 
@@ -35,3 +32,80 @@ This How-to is pretty big so it was splited into serveral parts.
 > **lb** - load balancer, will handle all requests to kubernetes Control Plane.
 
 This structure allows to experiment with cluster and check how kubernetes will behave when one worker node is down, or controller node was destroyed. On the latest stages I will show you such examples.
+
+Ip addresses provided in diagram - are internal ip addresses of VMs, so they can be easily accessed from laptop.
+
+
+## Prepare local environment
+
+Before installing anything on Virtual Mashines we need to install some programms first.
+
+### kubectl
+
+To be able to work with Kubernetes cluster from laptop client program needed.
+
+##### Install on MacOS
+
+```bash
+brew install kubectl
+```
+
+##### Install on Linux
+
+```bash
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+```
+
+#### Check that working
+
+```bash
+kubectl version
+```
+### cfssl
+Program, which is the canonical command line utility using the CFSSL packages. ([link](https://github.com/cloudflare/cfssl))
+
+##### Install on MacOS
+
+```bash
+curl -LO https://pkg.cfssl.org/R1.2/cfssl_darwin-amd64
+chmod +x cfssl_darwin-amd64
+sudo mv cfssl_darwin-amd64 /usr/local/bin/cfssl
+```
+##### Install on Linux
+
+```bash
+curl -LO https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
+chmod +x cfssl_linux-amd64
+sudo mv cfssl_linux-amd64 /usr/local/bin/cfssl
+```
+
+#### Check that working
+
+```bash
+cfssl version
+```
+
+### cfssljson
+Program, which takes the JSON output from the cfssl and multirootca programs and writes certificates, keys, CSRs, and bundles to disk([link](https://github.com/cloudflare/cfssl))
+
+##### Install on MacOS
+
+```bash
+curl -LO https://pkg.cfssl.org/R1.2/cfssljson_darwin-amd64
+chmod +x cfssljson_darwin-amd64
+sudo mv cfssljson_darwin-amd64 /usr/local/bin/cfssl
+```
+##### Install on Linux
+
+```bash
+curl -LO https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
+chmod +x cfssljson_linux-amd64
+sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssl
+```
+#### Check that working
+
+```bash
+cfssljson --version
+```

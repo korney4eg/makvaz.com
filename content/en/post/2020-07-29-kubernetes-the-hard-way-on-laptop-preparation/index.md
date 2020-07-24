@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Kubernetes The Hard Way on your laptop. Intro.
+title: Kubernetes The Hard Way on your laptop. Preparation
 archives: "2020"
 tags: [kubernetes, howto]
 tocEnabled: true

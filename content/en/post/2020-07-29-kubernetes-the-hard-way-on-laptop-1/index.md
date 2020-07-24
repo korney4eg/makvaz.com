@@ -5,11 +5,13 @@ archives: "2020"
 tags: [kubernetes, howto]
 tocEnabled: true
 ---
-_One of big steps in my preparation to CKA exam was to deploy kubernetes cluster locally. I started with great [guide from Kelsey Hightower called "Kubernetes The Hard Way"](https://github.com/kelseyhightower/kubernetes-the-hard-way)(or simply **KTHW**) and found out that it was created only for Google Cloud Platform. I decided to adopt it to my needs so cluster could be running on laptop. In this series of posts I gonna show how to do this._
-<!--more-->
-> Before going through this How-to I would recommend reading [Kubernetes concepts](https://kubernetes.io/docs/concepts/architecture/), so that this posts would become more understandeble. Anyway if you faced any issues during this lab feel free to ask in comments.
+<img src="laptop.png" alt="" width="120" style="float: left; margin-right: 15px">
 
-This How-to is pretty big so it was splited into serveral parts.
+_One of big steps in my preparation for the CKA exam was to deploy the Kubernetes cluster locally. I started with a great [guide from Kelsey Hightower called "Kubernetes The Hard Way"](https://github.com/kelseyhightower/kubernetes-the-hard-way)(or simply **KTHW**) and found out that it was created only for Google Cloud Platform. I decided to adapt it to my needs so the cluster could be running on a laptop. In this series of posts I gonna show how to do this._
+<!--more-->
+> Before going through this How-to I would recommend reading [Kubernetes concepts](https://kubernetes.io/docs/concepts/architecture/) so that these posts would become more understandable. Anyway if you faced any issues during this lab feel free to ask in comments.
+
+This How-to(Lab) is pretty big so it was split into several parts.
 
 ## Structure of this How-to:
 
@@ -18,7 +20,7 @@ This How-to is pretty big so it was splited into serveral parts.
 4. Provisioning all needed Certificates and keys, generating Kubernetes configuration files
 5. Bootstrapping the etcd Cluster. Bootstrapping the Kubernetes Control Plane
 7. Bootstrapping the Kubernetes Worker Nodes
-8. Setup kubectl, provision needed Add-ons and plugins. Testing
+8. Setup kubectl, provision needed Add-ons, and plugins. Testing
 
 
 ## Cluster overview
@@ -31,18 +33,18 @@ This How-to is pretty big so it was splited into serveral parts.
 > 
 > **lb** - load balancer, will handle all requests to kubernetes Control Plane.
 
-This structure allows to experiment with cluster and check how kubernetes will behave when one worker node is down, or controller node was destroyed. On the latest stages I will show you such examples.
+This structure allows to experiment with cluster and check how Kubernetes will behave when one worker node is down, or controller node was destroyed. In the latest stages, I will show you such examples.
 
-Ip addresses provided in diagram - are internal ip addresses of VMs, so they can be easily accessed from laptop.
+Ip addresses provided in the diagram - are internal IP addresses of VMs, so they can be easily accessed from laptop.
 
 
-## Prepare local environment
+## Prepare a local environment
 
-Before installing anything on Virtual Mashines we need to install some programms first.
+Before installing anything on Virtual Machines we need to install some programs first.
 
 ### kubectl
 
-To be able to work with Kubernetes cluster from laptop client program needed.
+To be able to work with the Kubernetes cluster from the laptop client program needed.
 
 ##### Install on MacOS
 
@@ -109,3 +111,7 @@ sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssl
 ```bash
 cfssljson --version
 ```
+
+## What's next
+
+In the next section, we gonna set up Virtual Machines and add more preparations. Feel free to subscribe for [RSS feed](/feed.xml) and you wouldn't miss anything interesting.

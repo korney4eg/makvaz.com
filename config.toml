@@ -1,6 +1,6 @@
 baseURL = "https://makvaz.com"
 
-theme = "jeffprod"
+theme = ["hugo-notice","jeffprod"]
 
 paginate = 5
 # uglyurls = true

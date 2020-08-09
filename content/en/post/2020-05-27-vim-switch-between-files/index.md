@@ -9,9 +9,9 @@ _I've been using Vim for about 5 years. During this time I tried other text edit
 
 <!--more-->
 
-> **Warning**
->
-> I suppose that reader is already familiar with modes in Vim (Insert mode, Command mode, and Visual mode). If no  - I would suggest passing `vimtutor` (it's available in almost all Linux distros and MacOs X), it would take you not more then 15-20 minutes.
+{{< notice warning >}}
+I suppose that reader is already familiar with modes in Vim (Insert mode, Command mode, and Visual mode). If no  - I would suggest passing `vimtutor` (it's available in almost all Linux distros and MacOs X), it would take you not more then 15-20 minutes.
+{{< /notice >}}
 
 Right now my screen in Vim has following parts: **(1)** - file structure(NERDTree plugin), **(2)** opened file and **(3)** terminal emulator.
 
@@ -20,11 +20,11 @@ Right now my screen in Vim has following parts: **(1)** - file structure(NERDTre
 
 Looks pretty, doesn't it?
 
-> **Note**
->
-> Any file, terminal emulator, file tree, quick-fix window, or any other information stored in a buffer, so each opened file has its buffer, a terminal on own. The best analogy would be to imaging the modern (in 2020) browser, where each tab is a new site.
->
-> The areas **(1)**,**(2)** and **(3)** in Vim called **(windows)**, they(windows) allow to arrange buffers on the screen.
+{{< notice note >}}
+Any file, terminal emulator, file tree, quick-fix window, or any other information stored in a buffer, so each opened file has its buffer, a terminal on own. The best analogy would be to imaging the modern (in 2020) browser, where each tab is a new site.
+
+The areas **(1)**,**(2)** and **(3)** in Vim called **(windows)**, they(windows) allow to arrange buffers on the screen.
+{{< /notice >}}
 
 Our aim here to learn how to switch between opened files(buffers) in window **(2)**.
 
@@ -35,9 +35,9 @@ To get a list of available buffers just enter command `:ls` in normal mode. You 
 
 ![buffers list](ls.png)
 
-> **Note**
->
-> Entering command is only available from Normal mode(press Esc key), then just write your command with `:` in the beginning and hit *Enter* button. Commands are visible in the bottom left corner of the Vim window.
+{{< notice note >}}
+Entering command is only available from Normal mode(press Esc key), then just write your command with `:` in the beginning and hit *Enter* button. Commands are visible in the bottom left corner of the Vim window.
+{{< /notice >}}
 
 First column - buffer number, second - buffer type and properties, third - name of the buffer. In this example buffer named `.bashrc` has number 1, `alias.bash` - number 3, terminal - number 2.
 
@@ -108,12 +108,16 @@ To do same thing in vime there are built-in commands `:bnext` and `:brevious`. L
 
 `<CR>` - in the command equals hitting *Enter* key.
 
-> If you want to save this keymapping permanently add following code to `~/.vimrc` file
+{{< notice tip >}}
+If you want to save this keymapping permanently add following code to `~/.vimrc` file
+{{< /notice >}}
 ```vim
 nnoremap <C-Tab> :bnext<CR>
 nnoremap <C-S-Tab> :bprevious<CR>
 ```
-> As you can see in vim default configuration file `~/.vimrc` you can write the same commands that you write here. Just remove `:` before the command and save the file. Next time you open vim, it will have this mapping working.
+{{< notice tip >}}
+As you can see in vim default configuration file `~/.vimrc` you can write the same commands that you write here. Just remove `:` before the command and save the file. Next time you open vim, it will have this mapping working.
+{{< /notice >}}
 
 
 ![round switch](bnext.gif)

@@ -1,3 +1,6 @@
 [submodule "themes/jeffprod"]
 	path = themes/jeffprod
 	url = https://github.com/korney4eg/hugo-blog-jeffprod
+[submodule "themes/hugo-notice"]
+	path = themes/hugo-notice
+	url = https://github.com/martignoni/hugo-notice.git

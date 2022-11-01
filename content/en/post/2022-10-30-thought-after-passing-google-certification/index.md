@@ -5,18 +5,18 @@ archives: "2022"
 tags: [gcp, certification]
 tocEnabled: false
 ---
-_On the 24th of October 2022 I passed the "Google Cloud Professional Architect" certification and here I would like to share how I prepared for this exam, some pieces of advice on what to learn, and some of my thoughts on such kinds of exams in total._
+_On the 24th of October 2022 I successfully passed the "Google Cloud Professional Architect" certification and here I would like to share how I prepared for this exam, some pieces of advice on what to learn, and some of my thoughts on such kinds of exams in total._
 <!--more-->
-**TL;DR: I see sense to pass this certification in cases:**
-1. **to learn about GCP from scratch,**
-2. **to prove your knowledge of GCP**
-3. **to find out that your current knowledge is not relevant for such exams.**
 
-I have already passed some certifications like [Certified Kubernetes Administrator](https://www.credly.com/badges/d20e7506-e328-48fa-b148-730cf3532878/linked_in_profile)(valid till May 2023), "AWS Certified SysOps Administrator - Associate"(expired on April 2021) and AWS Certified Solutions Architect - Associate (expired on July 2020), and I didn't have any intentions to get one more to myself. This year company where I'm working right now proposed to pass Google Cloud Professional Architect certification, so now I have one more certificate.
+I have already passed some certifications like [Certified Kubernetes Administrator](https://www.credly.com/badges/d20e7506-e328-48fa-b148-730cf3532878/linked_in_profile)(valid till May 2023), "AWS Certified SysOps Administrator - Associate"(expired on April 2021) and AWS Certified Solutions Architect - Associate (expired on July 2020), and I didn't have any intentions to get one more to myself. This year company where I'm working right now proposed to pass Google Cloud Professional Architect certification.
+
+And here you are 
+
+[![Google Cloud Professional Architect](google_cert.png)](https://www.credential.net/8f241a69-e879-430e-8abd-a7860ff220be?key=2fc794d9635816a1533eb7b830f4bec0bb2ae5cfe94d1f9c066124ffcb9c4879)
 
 ## What I used for preparation
 
-### Google Cloud Professional Architect: Get Certified 2022" course on Udemy
+### "Google Cloud Professional Architect: Get Certified 2022" course on Udemy
 
 [link to the course](https://www.udemy.com/course/google-cloud-professional-architect-get-certified/)
 
@@ -52,5 +52,9 @@ Those practice tests are a dump of official tests on exams, so working with them
 ## Suggestions to myself from the past
 What I haven't started doing from the beginning - I didn't take notes and watched Coursera videos like some shows on Netflix. Without notes, I couldn't differentiate for a long time between [BigQuery](https://cloud.google.com/bigquery/) and [BigTable](https://cloud.google.com/bigtable/), or between [Cloud DataProc](https://cloud.google.com/dataproc), [Cloud DataFlow](https://cloud.google.com/dataflow) and [Cloud Data Fusion](https://cloud.google.com/data-fusion/).
 
-##My thoughts on such kinds of exams
-Thank you for still reading it. I don't like exams that try to trick you with wording, instead of checking your knowledge. The certification that I liked most of all - is "Certified Kubernetes Administrator", which has practical tasks. Anyway from preparing for exams I found useful improvements to our current infrastructure.
+Thank you for still reading it. 
+
+## My thoughts on such kinds of exams
+I don't like exams that try to trick you with wording, instead of checking your knowledge. The certification that I liked most of all - is "Certified Kubernetes Administrator", which has practical tasks. Anyway from preparing for exams I found useful improvements to our current infrastructure.
+
+What are your favorite/dislikable exams that you had after graduating?

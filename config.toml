@@ -2,7 +2,7 @@ baseURL = "https://makvaz.com"
 
 theme = ["hugo-notice","jeffprod"]
 
-paginate = 5
+# paginate = 5
 # uglyurls = true
 
 disableKinds = ["section"]
@@ -12,72 +12,99 @@ PygmentsStyle = "monokai"
 
 disqusShortname = "makvaz-com"
 
-DefaultContentLanguage = "ru"
+DefaultContentLanguage = "zametki"
 copyright = "Everything is mine"
 
 [languages]
-[languages.en]
+[languages.notes]
   title = "Makvaz"
   baseURL = "https://notes.makvaz.com"
   weight = 4
-  contentDir = "content/en"
-  [[languages.en.menu.main]]
+  contentDir = "content/notes"
+  [[languages.notes.menu.main]]
     url    = "/about/"
     name   = "About"
     weight = 2
     identifier = "about"
     pre = ""
-  [[languages.en.menu.main]]
+  [[languages.notes.menu.main]]
     name = "Русская версия"
     weight = 1.1
     pre = "<i class='fas fa-rss-square fa-3x'>"
     url = "https://zametki.makvaz.com"
     identifier = "zametki.makvaz.com"
-  [[languages.en.menu.main]]
+  [[languages.notes.menu.main]]
     name = "RSS"
     weight = 3
     pre = "<i class='fas fa-rss-square fa-3x'>"
     url = "/feed.xml"
     identifier = "RSS"
-  [[languages.en.menu.bottom]]
+  [[languages.notes.menu.bottom]]
     name = "Privacy Policy"
     weight = 3
     url = "/privacy/"
     identifier = "privacy"
-  [languages.en.params]
+  [languages.notes.params]
     description = "Technical notes and other"
     googleAnalyticsCode = "UA-124592546-2"
     yandexMetrikaCode = "54471976"
-[languages.ru]
+[languages.zametki]
   title = "Макваз"
   weight = 2
-  contentDir = "content/ru"
+  contentDir = "content/zametki"
   baseURL = "https://zametki.makvaz.com"
-  [[languages.ru.menu.main]]
+  [[languages.zametki.menu.main]]
     url    = "/about/"
     name   = "О сайте"
     weight = 2
     identifier = "about"
     pre = ""
-  [[languages.ru.menu.main]]
+  [[languages.zametki.menu.main]]
     name = "RSS"
     weight = 3
     pre = "<i class='fas fa-rss-square fa-3x'>"
     url = "/feed.xml"
     identifier = "RSS"
-  [[languages.ru.menu.main]]
+  [[languages.zametki.menu.main]]
     url    = "https://notes.makvaz.com"
     name   = "English version"
     weight = 2
     identifier = "notes.makvaz.com"
-  [[languages.ru.menu.bottom]]
+  [[languages.zametki.menu.bottom]]
     name = "Политика конфиденциальности"
     weight = 3
     url = "/privacy/"
     identifier = "privacy"
 
-  [languages.ru.params]
+  [languages.zametki.params]
     description = "Технические заметки и не только"
+    googleAnalyticsCode = "UA-111183533-1"
+    yandexMetrikaCode = "54471931"
+[languages.imhotnia]
+  title = "IMHO-тня Макваз"
+  weight = 2
+  contentDir = "content/imhotnia"
+  baseURL = "https://imhotnia.makvaz.com"
+  [[languages.imhotnia.menu.main]]
+    url    = "/about/"
+    name   = "О сайте"
+    weight = 2
+    identifier = "about"
+    pre = ""
+  [[languages.imhotnia.menu.main]]
+    name = "RSS"
+    weight = 3
+    pre = "<i class='fas fa-rss-square fa-3x'>"
+    url = "/feed.xml"
+    identifier = "RSS"
+  [[languages.imhotnia.menu.bottom]]
+    name = "Политика конфиденциальности"
+    weight = 3
+    url = "/privacy/"
+    identifier = "privacy"
+
+  [languages.zametki.params]
+    description = "Про всё, кроме технического"
     googleAnalyticsCode = "UA-111183533-1"
     yandexMetrikaCode = "54471931"
 

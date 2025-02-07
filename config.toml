@@ -2,10 +2,10 @@ baseURL = "https://makvaz.com"
 
 theme = ["hugo-notice","jeffprod"]
 
-paginate = 5
+# paginate = 5
 # uglyurls = true
 
-disableKinds = ["section"]
+# disableKinds = ["section"]
 
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
@@ -113,6 +113,9 @@ date  = [":filename", ":default"]
 
 [author]
     name = "Aliaksei Karneyeu"
+
+[pagination]
+  pagerSize = 5
 
 [markup.goldmark.renderer]
 unsafe= true

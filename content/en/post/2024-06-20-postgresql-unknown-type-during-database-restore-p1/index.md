@@ -2,6 +2,8 @@
 layout: post
 title: PostgreSQL. Fixing "type does not exist" error during restoring database.
 draft: false
+archives: "2024"
+tags: [postgresql, howto]
 ---
 _I faced an interesting issue when I tried to restore a database from a backup. The error said: `type "ltree" does not exist`. **ltree** is a [PostgreSQL extension](https://www.postgresql.org/docs/current/ltree.html), and this error can appear with any PostgreSQL extension. So how do we fix this error?_
 

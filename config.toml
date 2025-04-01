@@ -2,8 +2,10 @@ baseURL = "https://makvaz.com"
 
 theme = ["hugo-notice","jeffprod"]
 
-paginate = 5
+# paginate = 5
 # uglyurls = true
+[pagination]
+  pagerSize = 5
 
 disableKinds = ["section"]
 

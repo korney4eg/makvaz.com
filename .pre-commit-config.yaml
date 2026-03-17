@@ -1,0 +1,79 @@
+# ../../../../.pre-commit-config.yaml
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=auto]
+      - id: check-added-large-files
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: pretty-format-json
+        args: [--autofix, --indent=4, --no-sort-keys]
+
+  - repo: https://github.com/boidolr/pre-commit-text
+    rev: v1.2.19
+    hooks:
+      - id: pretty-format-yaml
+        args: [--preserve-quotes]
+
+  # Optimize images for size
+  - repo: https://github.com/boidolr/pre-commit-images
+    rev: v1.10.0
+    hooks:
+      - id: optimize-avif
+      - id: optimize-jpg
+      - id: optimize-png
+      - id: optimize-svg
+      - id: optimize-webp
+
+  # Strip EXIF data from images
+  - repo: https://github.com/stefmolin/exif-stripper
+    rev: 1.2.0
+    hooks:
+      - id: strip-exif
+
+  - repo: local
+    hooks:
+      # default settings in Markdown annoy me too much
+      - id: prettier
+        name: prettier
+        entry: prettier --write
+        language: node
+        types: [javascript, jsx, ts, tsx, css, scss, json, markdown]
+        # files: \.(js|jsx|ts|tsx|css|scss|json|md|html|yaml|yml)$
+        additional_dependencies: ["prettier@^3.0.0"]
+
+      # it's harder to use than I expected
+      # grammar and style checking for Markdown and text files
+      - id: textlint
+        name: textlint
+        entry: textlint
+        # args: ["--dry-run", "--fix"]
+        args: ["--debug", "--fix"]
+        language: node
+        types: [markdown, text]
+        additional_dependencies:
+          - "textlint@^15.2.2"
+          - "textlint-rule-no-start-duplicated-conjunction@^2.0.2"
+          - "textlint-rule-no-dead-link@^6.0.1"
+          - "textlint-rule-terminology@^5.2.15"
+          - "@textlint-rule/textlint-rule-no-unmatched-pair@^2.0.4"
+          - "textlint-rule-alex@^5.0.0"
+          - "textlint-rule-common-misspellings@^1.0.1"
+          - "textlint-rule-apostrophe@^3.0.0"
+          - "textlint-rule-write-good@^2.0.0"
+          - "@textlint-rule/textlint-rule-preset-google@^0.1.2"
+
+      # allows to easily embed always fresh code snippets
+      - id: embedme
+        name: embedme
+        entry: embedme
+        language: node
+        types: [markdown]
+        additional_dependencies: ["embedme@^1.22.0"]

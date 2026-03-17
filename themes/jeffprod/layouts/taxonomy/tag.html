@@ -1,0 +1,42 @@
+{{ define "main" }}
+
+{{ $tag := lower .Title }}
+
+<div class="columns">
+    <div class="column is-9">
+        <div class="tile is-child box">
+            <div class="content">
+{{ range $key, $value := .Site.Taxonomies.tags }}{{ if eq $key $tag }}{{ range $value.Pages }}
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <!-- <p class="title is-4"><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></p> -->
+                                 <h1 class="title is-4"><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></h1>
+                                <p class="subtitle is-size-6 has-text-grey-light">
+                                    {{ .Date.Format "02.01.2006" }} &middot;
+                                </p>
+                                <div class="tags">
+                                {{ range $name := .Params.tags }}
+                                    <span class="tag"><a href="{{ "tags" | absURL }}/{{ $name | urlize }}">{{ $name }}</a></span>
+                                {{ end }}
+                                </div>
+                                <p>
+                                  <!-- {{ if (where (readDir "static/assets/icons/") "Name" (print $tag ".svg"))}} -->
+                                  <!--   <img src="/assets/icons/{{ $tag }}.svg" align="left" style="width:100px;" vspace="20" hspace="20"> -->
+                                  <!-- {{ end }} -->
+                                  {{ .Summary }}...</p>
+                            </div>
+                        </div>
+                    </article>
+{{ end }}{{ end }}{{ end }}
+            </div>
+        </div>
+    </div>
+    <div class="column is-3">
+        {{ partial "widget-tags.html" . }}<br>
+        {{ partial "widget-recent.html" . }}<br>
+        {{ partial "widget-archives.html" . }}
+    </div>
+</div>
+
+{{ end }}

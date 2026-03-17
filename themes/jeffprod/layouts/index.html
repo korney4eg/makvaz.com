@@ -1,0 +1,64 @@
+{{ define "main" }}
+{{ $paginator := .Paginate (where .Site.RegularPages "Section" "post").ByPublishDate.Reverse }}
+
+<div class="columns">
+    <div class="column is-9">
+        <div class="tile is-child box">
+            <div class="content">
+                <hr>
+                {{ range $paginator.Pages }}
+                <!-- skipping wierd Posts post -->
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <!-- <p class="title is-4"><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></p> -->
+                                 <h1 class="title is-4"><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></h1>
+                                <p class="subtitle is-size-6 has-text-grey-light">
+                                    {{ .Date.Format "02.01.2006" }} &middot;
+                                </p>
+                                <div class="tags">
+                                {{ range $name := .Params.tags }}
+                                    <span class="tag"><a href="{{ "tags" | absURL }}/{{ $name | urlize }}">{{ $name }}</a></span>
+                                {{ end }}
+                                </div>
+                                <p>
+                                <!-- {{ $found := 0 }} -->
+                                <!-- {{ range $name := .Params.tags }} -->
+                                <!--   {{ if (where (readDir "static/assets/icons/") "Name" (print $name ".svg"))}} -->
+                                <!--     {{ if eq $found 0 }} -->
+                                <!--     <img src="/assets/icons/{{ $name }}.svg" align="left" style="width:60px;" vspace="0" hspace="20"> -->
+                                <!--     {{ $found = 1 }} -->
+                                <!--     {{ end }} -->
+                                <!--   {{ end }} -->
+                                <!-- {{end}} -->
+                                {{ .Summary }}...</p>
+                            </div>
+                        </div>
+                    </article>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    <div class="column is-3">
+        {{ partial "widget-tags.html" . }}<br>
+        {{ partial "widget-recent.html" . }}<br>
+        {{ partial "widget-archives.html" . }}
+    </div>
+</div>
+<div class="columns">
+    <div class="column is-9">
+        <nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
+            {{ if $paginator.HasPrev }}<a class="pagination-previous" href="{{ $paginator.Prev.URL }}">{{ i18n "previous_page" }}</a>{{ end }}
+            {{ if $paginator.HasNext }}<a class="pagination-next" href="{{ $paginator.Next.URL }}">{{ i18n "next_page" }}</a>{{ end }}
+            <ul class="pagination-list">
+                {{ range $paginator.Pagers }}
+                <li class="pagination__item">
+                    <a class="pagination-link{{ if eq . $paginator }} is-current{{ end }}" aria-label="Goto page {{ .PageNumber }}" href="{{ .URL }}">{{ .PageNumber }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </nav>
+    </div>
+</div>
+
+{{ end }}

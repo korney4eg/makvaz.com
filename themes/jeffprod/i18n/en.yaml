@@ -1,0 +1,29 @@
+  - id: labels
+    translation: Labels
+  - id: recent_posts
+    translation: Recent posts
+  - id: archives
+    translation: Archives
+  - id: rights_reserved
+    translation: All rights reserved
+
+
+  - id: contents
+    translation: Table of contents
+
+
+  - id: cookie_message
+    translation: This website uses cookies to ensure you get the best experience on our website.
+  - id: cookie_dismiss
+    translation: "Got it!"
+  - id: cookie_learn
+    translation: Learn more
+
+  - id: privacy_policy
+    translation: Privacy policy
+
+  - id: next_page
+    translation: Next page
+
+  - id: previous_page
+    translation: Previous page

@@ -1,0 +1,29 @@
+  - id: labels
+    translation: Метки
+  - id: recent_posts
+    translation: Свежие статьи
+  - id: archives
+    translation: По годам
+  - id: rights_reserved
+    translation: Все права защищены
+
+
+  - id: contents
+    translation: Содержание
+
+
+  - id: cookie_message
+    translation: На этом сайте используются cookie.
+  - id: cookie_dismiss
+    translation: "Понятно!"
+  - id: cookie_learn
+    translation: Узнать больше
+
+  - id: privacy_policy
+    translation: Политика конфиденциальности
+
+  - id: next_page
+    translation: Следующая
+
+  - id: previous_page
+    translation: Педыдущая

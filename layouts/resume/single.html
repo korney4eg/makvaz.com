@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="page">
+  <div class="btnbar no-print">
+    <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <header>
+    <div>
+      <h1>{{ with .Params.name }}{{ . }}{{ else }}{{ .Title }}{{ end }}</h1>
+      {{ with .Params.role }}<div class="subtitle">{{ . }}</div>{{ end }}
+    </div>
+    <div class="contact">
+      {{ with .Params.email }}<div>Email: <a href="mailto:{{ . }}">{{ . }}</a></div>{{ end }}
+      {{ with .Params.phone }}<div>Phone: <a href="tel:{{ . }}">{{ . }}</a></div>{{ end }}
+      {{ with .Params.linkedin }}
+      <div>LinkedIn: <a href="{{ . }}">{{ replace . "https://www.linkedin.com" "" }}</a></div>
+      {{ end }}
+      {{ with .Params.languages }}
+      <div class="chips">
+        {{ range . }}<span class="chip">{{ . }}</span>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </header>
+
+  <div class="rule"></div>
+
+  <main class="section content">
+    {{ .Content }}
+  </main>
+</div>
+{{ end }}

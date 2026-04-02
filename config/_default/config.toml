@@ -1,0 +1,170 @@
+baseURL = "https://makvaz.com"
+
+theme = ["gokarna-hugo","hugo-notice"]
+
+[pagination]
+  pagerSize = 5
+
+disableKinds = ["section"]
+
+
+disqusShortname = "makvaz-com"
+
+DefaultContentLanguage = "en"
+copyright = "Everything is mine"
+
+[languages]
+[languages.en]
+  title = "Aliaksei Karneyeu"
+  baseURL = "https://notes.makvaz.com"
+  weight = 4
+  contentDir = "content/en"
+  [[languages.en.menu.main]]
+    url    = "/post/"
+    name   = "Blog"
+    weight = 1
+    identifier = "blog"
+    pre = "<span data-feather='edit-3'></span>"
+  [[languages.en.menu.main]]
+    url    = "/cv/"
+    name   = "CV"
+    weight = 3
+    identifier = "cv"
+    pre = "<span data-feather='clipboard'></span>"
+  [[languages.en.menu.main]]
+    name = "Tags"
+    weight = 4
+    pre = "<span data-feather='tag'></span>"
+    url = "/tags/"
+    identifier = "tags"
+  [[languages.en.menu.main]]
+    name = "RSS"
+    weight = 5
+    pre = "<span data-feather='rss'></span>"
+    url = "/feed.xml"
+    identifier = "RSS"
+  [[languages.en.menu.main]]
+    name = "(RU)"
+    weight = 6
+    url = "https://zametki.makvaz.com"
+    identifier = "lang-ru"
+    pre = "<span data-feather='globe'></span>"
+  [[languages.en.menu.bottom]]
+    name = "Privacy Policy"
+    weight = 3
+    url = "/privacy/"
+    identifier = "privacy"
+  [languages.en.params]
+    description = "SRE / DevOps / Infrastructure Engineer"
+    avatarURL = "/avatar.png"
+    avatarAltText = "Aliaksei Karneyeu"
+    socialIcons = [
+      {name = "github", url = "https://github.com/korney4eg"},
+      {name = "linkedin", url = "https://www.linkedin.com/in/aliaksei-karneyeu-6064a745/"},
+      {name = "email", url = "mailto:korneevayu@gmail.com"},
+      {name = "telegram", url = "https://t.me/korney4eg"},
+      {name = "x", url = "https://twitter.com/kornei4"}
+    ]
+    googleAnalyticsCode = "UA-124592546-2"
+    yandexMetrikaCode = "54471976"
+    otherLangURL = "https://zametki.makvaz.com"
+    otherLangName = "Русская версия"
+
+[languages.ru]
+  title = "Корнеев Алексей"
+  weight = 2
+  contentDir = "content/ru"
+  baseURL = "https://zametki.makvaz.com"
+  [[languages.ru.menu.main]]
+    url    = "/post/"
+    name   = "Блог"
+    weight = 1
+    identifier = "blog"
+    pre = "<span data-feather='edit-3'></span>"
+  [[languages.ru.menu.main]]
+    url    = "/cv/"
+    name   = "CV"
+    weight = 3
+    identifier = "cv"
+    pre = "<span data-feather='clipboard'></span>"
+  [[languages.ru.menu.main]]
+    name = "Теги"
+    weight = 4
+    pre = "<span data-feather='tag'></span>"
+    url = "/tags/"
+    identifier = "tags"
+  [[languages.ru.menu.main]]
+    name = "RSS"
+    weight = 5
+    pre = "<span data-feather='rss'></span>"
+    url = "/feed.xml"
+    identifier = "RSS"
+  [[languages.ru.menu.main]]
+    name = "(EN)"
+    weight = 6
+    url = "https://notes.makvaz.com"
+    identifier = "lang-en"
+    pre = "<span data-feather='globe'></span>"
+  [[languages.ru.menu.bottom]]
+    name = "Политика конфиденциальности"
+    weight = 3
+    url = "/privacy/"
+    identifier = "privacy"
+  [languages.ru.params]
+    description = "SRE/ DevOps / Infrastructure Engineer"
+    avatarURL = "/avatar.png"
+    avatarAltText = "Алексей Корнеев"
+    socialIcons = [
+      {name = "github", url = "https://github.com/korney4eg"},
+      {name = "linkedin", url = "https://www.linkedin.com/in/aliaksei-karneyeu-6064a745/"},
+      {name = "email", url = "mailto:korneevayu@gmail.com"},
+      {name = "telegram", url = "https://t.me/korney4eg"},
+      {name = "x", url = "https://twitter.com/kornei4"}
+    ]
+    googleAnalyticsCode = "UA-111183533-1"
+    yandexMetrikaCode = "54471931"
+    otherLangURL = "https://notes.makvaz.com"
+    otherLangName = "English version"
+
+enableRobotsTXT = true
+rssLimit = 10
+[privacy]
+  [privacy.disqus]
+    disable = false
+  [privacy.googleAnalytics]
+    anonymizeIP = true
+    disable = false
+    respectDoNotTrack = true
+    useSessionStorage = true
+
+[outputFormats]
+[outputFormats.RSS]
+mediatype = "application/rss"
+baseName = "feed"
+
+[frontmatter]
+date  = [":filename", ":default"]
+
+[permalinks]
+    post = "/:year/:month/:day/:slug"
+    page = "/page:slug"
+
+[taxonomies]
+    tag = "tags"
+    archive = "archives"
+
+[author]
+    name = "Aliaksei Karneyeu"
+
+[markup.highlight]
+  codeFences = true
+  style = "monokai"
+
+[markup.goldmark.renderer]
+unsafe= true
+
+privacy_pack = true
+
+[params]
+  featureImg = "assets/img/header-pic.jpeg"
+  customHeadHTML = "<link rel='preconnect' href='https://fonts.googleapis.com'><link rel='preconnect' href='https://fonts.gstatic.com' crossorigin><link href='https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap' rel='stylesheet'><style>.footer { opacity: 0.60; font-size: 0.75em; } .footer-identity { margin-bottom: 8px; } .footer-tagline { opacity: 0.75; } .footer-social { display: flex; gap: 12px; margin-bottom: 8px; justify-content: center; } .footer-social a { display: flex; align-items: center; } .footer-social img { width: 18px; height: 18px; } .footer-social svg { width: 18px; height: 18px; fill: currentColor; } .footer-menu a { display: block; } .footer-menu span { display: block; margin-top: 4px; } .list-posts .post-title { margin-bottom: 24px !important; overflow: hidden; } .list-posts .post-title a { font-size: 1.15em; width: auto; } .list-posts .post-date { font-size: 0.8em; color: gray; } .post-summary { margin-top: 6px; font-size: 0.95em; opacity: 0.85; line-height: 1.7; letter-spacing: 0.5px; font-style: italic; } .post-content { font-weight: 300; } .pagination { display: flex; width: 100%; } .pagination-newer { margin-left: auto; }</style>"

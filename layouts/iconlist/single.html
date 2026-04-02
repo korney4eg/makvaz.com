@@ -1,0 +1,50 @@
+{{ define "main" }}
+<style>
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 16px 0 32px 0;
+}
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 72px;
+}
+.icon-item img {
+  width: 32px;
+  height: 32px;
+}
+.icon-item span {
+  font-size: 0.7em;
+  text-align: center;
+  opacity: 0.75;
+  word-break: break-all;
+}
+</style>
+
+<h1>{{ .Title }}</h1>
+
+<h2>Social / Communication</h2>
+<div class="icon-grid">
+  {{ range slice "angellist" "buymeacoffee" "discord" "dribbble" "email" "facebook" "github" "gmail" "google" "instagram" "linkedin" "mastodon" "mozilla" "reddit" "rss" "spotify" "stackoverflow" "tiktok" "twitch" "twitter" "vimeo" "x" "xing" "ycombinator" "youtube" }}
+  <div class="icon-item">
+    <img class="svg-inject" src="{{ relURL "svg/icons/" }}{{ . }}.svg" alt="{{ . }}">
+    <span>{{ . }}</span>
+  </div>
+  {{ end }}
+</div>
+
+<h2>Other</h2>
+<div class="icon-grid">
+  {{ range slice "iota" "itchio" "kofi" }}
+  <div class="icon-item">
+    <img class="svg-inject" src="{{ relURL "svg/icons/" }}{{ . }}.svg" alt="{{ . }}">
+    <span>{{ . }}</span>
+  </div>
+  {{ end }}
+</div>
+
+{{ end }}

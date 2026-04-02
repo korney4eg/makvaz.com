@@ -1,0 +1,71 @@
+{{ define "main" }}
+<section class="home-about">
+	<div class="avatar">
+        {{ if isset .Site.Params "avatarurl" }}
+        <img class={{ .Site.Params.AvatarSize | default "size-m" }} src='{{ .Scratch.Get "avatarImgSrc" }}' alt="{{ .Site.Params.AvatarAltText|default "avatar" }}">
+        {{ end }}
+	</div>
+
+    {{ if isset .Site.Params "showpostsonhomepage" }}
+        {{ if isset .Site.Params "description" }}
+        <h1>{{ .Site.Params.Description }}</h1>
+        {{ end }}
+    {{ else }}
+        <h1>{{ .Site.Title }}</h1>
+        {{ if isset .Site.Params "description" }}
+        <h2>{{ .Site.Params.Description }}</h2>
+        {{ end }}
+    {{ end }}
+
+</section>
+
+<div class="flex-break"></div>
+
+{{ if isset .Site.Params "socialicons" }}
+<div class="gk-social-icons">
+    <ul class="gk-social-icons-list">
+        {{ range .Site.Params.SocialIcons }}
+        <li class="gk-social-icon">
+            <a href="{{ .url }}" target="_blank" rel="{{ if .rel }}{{ .rel }} {{ end }}noopener noreferrer" aria-label="Learn more on {{ .name }}">
+                <img class="svg-inject" src="{{ relURL "svg/icons/" }}{{ .name | lower }}.svg" alt="">
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+
+{{ if .Content }}
+<section class="home-content">
+    {{ .Content }}
+</section>
+{{ end }}
+
+{{ if isset .Site.Params "showpostsonhomepage" }}
+
+    {{ $posts := where .Site.Pages "Params.layout" "post" }}
+    {{ $sorted := $posts.ByDate.Reverse }}
+    {{ if eq .Site.Params.ShowPostsOnHomePage "popular" }}
+        {{ $sorted = $posts.ByWeight }}
+    {{ end }}
+    {{ $paginator := .Paginate $sorted }}
+
+    <div class="home-posts list-posts">
+        {{ range $paginator.Pages }}
+            {{- partial "list-posts.html" . -}}
+        {{ end }}
+    </div>
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination">
+        {{ if $paginator.HasNext }}
+            <a class="pagination-item pagination-older" href="{{ $paginator.Next.URL }}">Older</a>
+        {{ end }}
+        {{ if $paginator.HasPrev }}
+            <a class="pagination-item pagination-newer" href="{{ $paginator.Prev.URL }}">Newer</a>
+        {{ end }}
+    </nav>
+    {{ end }}
+
+{{ end }}
+{{ end }}

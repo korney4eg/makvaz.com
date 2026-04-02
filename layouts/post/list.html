@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="container list-posts">
+
+    <h1 class="list-title">{{ i18n "posts" | default "Posts" }}</h1>
+
+    {{ $paginator := .Paginate (where .Site.RegularPages "Params.layout" "post") }}
+
+    {{ range $paginator.Pages }}
+        {{- partial "list-posts.html" . -}}
+    {{ end }}
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination">
+        {{ if $paginator.HasNext }}
+            <a class="pagination-item pagination-older" href="{{ $paginator.Next.URL }}">Older</a>
+        {{ end }}
+        {{ if $paginator.HasPrev }}
+            <a class="pagination-item pagination-newer" href="{{ $paginator.Prev.URL }}">Newer</a>
+        {{ end }}
+    </nav>
+    {{ end }}
+
+</div>
+{{ end }}

@@ -1,0 +1,67 @@
+[languages.en.params]
+  otherLangURL = "http://localhost:1313"
+
+[[languages.en.menu.main]]
+  url    = "/post/"
+  name   = "Blog"
+  weight = 1
+  identifier = "blog"
+  pre = "<span data-feather='edit-3'></span>"
+[[languages.en.menu.main]]
+  url    = "/cv/"
+  name   = "CV"
+  weight = 3
+  identifier = "cv"
+  pre = "<span data-feather='clipboard'></span>"
+[[languages.en.menu.main]]
+  name = "Tags"
+  weight = 4
+  pre = "<span data-feather='tag'></span>"
+  url = "/tags/"
+  identifier = "tags"
+[[languages.en.menu.main]]
+  name = "RSS"
+  weight = 5
+  pre = "<span data-feather='rss'></span>"
+  url = "/feed.xml"
+  identifier = "RSS"
+[[languages.en.menu.main]]
+  name = "(RU)"
+  weight = 6
+  url = "http://localhost:1313"
+  identifier = "lang-ru"
+  pre = "<span data-feather='globe'></span>"
+
+[languages.ru.params]
+  otherLangURL = "http://localhost:1314"
+
+[[languages.ru.menu.main]]
+  url    = "/post/"
+  name   = "Блог"
+  weight = 1
+  identifier = "blog"
+  pre = "<span data-feather='edit-3'></span>"
+[[languages.ru.menu.main]]
+  url    = "/cv/"
+  name   = "CV"
+  weight = 3
+  identifier = "cv"
+  pre = "<span data-feather='clipboard'></span>"
+[[languages.ru.menu.main]]
+  name = "Теги"
+  weight = 4
+  pre = "<span data-feather='tag'></span>"
+  url = "/tags/"
+  identifier = "tags"
+[[languages.ru.menu.main]]
+  name = "RSS"
+  weight = 5
+  pre = "<span data-feather='rss'></span>"
+  url = "/feed.xml"
+  identifier = "RSS"
+[[languages.ru.menu.main]]
+  name = "(EN)"
+  weight = 6
+  url = "http://localhost:1314"
+  identifier = "lang-en"
+  pre = "<span data-feather='globe'></span>"

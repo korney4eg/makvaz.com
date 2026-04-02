@@ -1,0 +1,106 @@
+<style>
+.dropdown { position: relative; }
+.dropdown-toggle { cursor: pointer; user-select: none; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  min-width: 120px;
+  padding: 4px 0;
+  background: var(--header-background, inherit);
+  border: 1px solid var(--light-secondary-color);
+  border-radius: 4px;
+}
+.dark .dropdown-menu {
+  border-color: var(--dark-secondary-color);
+}
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a {
+  display: block;
+  padding: 6px 14px;
+  white-space: nowrap;
+}
+.dropdown-menu a:hover { opacity: 0.7; }
+</style>
+
+<header class="header">
+    <nav class="header-nav">
+
+        {{ if isset .Site.Params "avatarurl" }}
+        <div class="avatar">
+            <a href="{{ .Site.BaseURL }}">
+                <img src='{{ .Scratch.Get "avatarImgSrc" }}' alt="{{ .Site.Params.AvatarAltText|default "avatar" }}">
+            </a>
+        </div>
+        {{ end }}
+
+        <div class="nav-title">
+            <a class="nav-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+        </div>
+
+        <div class="nav-links">
+            {{ range .Site.Menus.main }}
+            {{ if .HasChildren }}
+            <div class="nav-link dropdown">
+                <span class="dropdown-toggle">{{ .Name }} ▾</span>
+                <div class="dropdown-menu">
+                    {{ range .Children }}
+                    <a href="{{ .URL }}" aria-label="{{ .Identifier }}" {{ if .Params.NewPage -}}target="_blank" {{- end -}}>{{ .Name }}</a>
+                    {{ end }}
+                </div>
+            </div>
+            {{ else }}
+            <div class="nav-link">
+                <a href="{{ .URL | absURL }}" aria-label="{{ .Identifier }}" {{ if .Params.NewPage -}}target="_blank" {{- end -}}>
+                    {{- .Pre | safeHTML }} {{ .Name }} {{ .Post | safeHTML -}}
+                </a>
+            </div>
+            {{ end }}
+            {{ end }}
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                <a aria-hidden="true" role="switch">
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a aria-checked="false" aria-labelledby="hamburger-menu-toggle" id="hamburger-menu-toggle-target" role="switch">
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            <!-- For mobile -->
+            <ul class="nav-hamburger-list visibility-hidden">
+                {{ range .Site.Menus.main }}
+                {{ if .HasChildren }}
+                <li class="nav-item">
+                    <span>{{ .Name }}</span>
+                    {{ range .Children }}
+                    <a href="{{ .URL }}" {{ if .Params.NewPage -}}target="_blank" {{- end -}}>{{ .Name }}</a>
+                    {{ end }}
+                </li>
+                {{ else }}
+                <li class="nav-item">
+                    <a href="{{ .URL | absURL }}" {{ if .Params.NewPage -}} target="_blank"{{- end -}}>
+                        {{- .Pre | safeHTML }} {{ .Name }} {{ .Post | safeHTML -}}
+                    </a>
+                </li>
+                {{ end }}
+                {{ end }}
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a role="switch">
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>

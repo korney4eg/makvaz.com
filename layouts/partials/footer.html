@@ -20,9 +20,6 @@
 
     {{/* Bottom links: lang switcher + privacy + copyright */}}
     <nav class="footer-menu">
-        {{ if .Site.Params.otherLangURL }}
-        <a href="{{ .Site.Params.otherLangURL }}">{{ .Site.Params.otherLangName }}</a>
-        {{ end }}
         {{ range .Site.Menus.bottom }}
         <a href="{{ .URL }}">{{ .Name }}</a>
         {{ end }}

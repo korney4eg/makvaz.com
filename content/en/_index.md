@@ -4,7 +4,8 @@ title: "Aliaksei Karneyeu"
 
 Hi, I’m Aliaksei Karneyeu. I’ve been working with infrastructure and scalable systems for 10+ years.
 
-My experience ranges from manually setting up applications for large-scale platforms to operating infrastructure in the AdTech industry.
+I started from setup application on couple of Red Hat servers, now operating
+high-loaded systems with thousands of pods.
 
 Currently at OpenX, working with GCP, Kubernetes, and reliability. You can also check out my [CV](./cv/).
 

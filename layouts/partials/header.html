@@ -30,14 +30,14 @@
 
         {{ if isset .Site.Params "avatarurl" }}
         <div class="avatar">
-            <a href="{{ .Site.BaseURL }}">
+            <a href="{{ .Site.Home.Permalink }}">
                 <img src='{{ .Scratch.Get "avatarImgSrc" }}' alt="{{ .Site.Params.AvatarAltText|default "avatar" }}">
             </a>
         </div>
         {{ end }}
 
         <div class="nav-title">
-            <a class="nav-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            <a class="nav-brand" href="{{ .Site.Home.Permalink }}">{{ .Site.Title }}</a>
         </div>
 
         <div class="nav-links">
@@ -53,7 +53,7 @@
             </div>
             {{ else }}
             <div class="nav-link">
-                <a href="{{ .URL | absURL }}" aria-label="{{ .Identifier }}" {{ if .Params.NewPage -}}target="_blank" {{- end -}}>
+                <a href="{{ .URL | absLangURL }}" aria-label="{{ .Identifier }}" {{ if .Params.NewPage -}}target="_blank" {{- end -}}>
                     {{- .Pre | safeHTML }} {{ .Name }} {{ .Post | safeHTML -}}
                 </a>
             </div>
@@ -87,7 +87,7 @@
                 </li>
                 {{ else }}
                 <li class="nav-item">
-                    <a href="{{ .URL | absURL }}" {{ if .Params.NewPage -}} target="_blank"{{- end -}}>
+                    <a href="{{ .URL | absLangURL }}" {{ if .Params.NewPage -}} target="_blank"{{- end -}}>
                         {{- .Pre | safeHTML }} {{ .Name }} {{ .Post | safeHTML -}}
                     </a>
                 </li>

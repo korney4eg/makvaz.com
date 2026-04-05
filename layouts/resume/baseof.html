@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ with .Params.name }}{{ . }} — CV{{ else }}{{ with .Title }}{{ . }} — CV{{ else }}CV{{ end }}{{ end }}</title>
+  {{ $css := resources.Get "css/resume.css" | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  <meta name="color-scheme" content="light only">
+</head>
+<body>
+  {{ block "main" . }}{{ end }}
+</body>
+</html>

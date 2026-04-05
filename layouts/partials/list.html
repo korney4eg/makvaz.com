@@ -1,0 +1,9 @@
+<div class="container list-posts">
+
+    <h1 class="list-title">{{ i18n .Name }}</h1>
+
+    {{- range (where .Pages "Params.layout" "post") -}}
+        {{- partial "list-posts.html" . -}}
+    {{- end -}}
+
+</div>

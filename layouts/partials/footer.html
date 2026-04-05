@@ -1,0 +1,32 @@
+<footer class="footer">
+    {{ if .Site.Params.CustomFooterHTML }}
+    {{ .Site.Params.CustomFooterHTML | safeHTML }}
+    {{ end }}
+
+
+    {{/* Social icons */}}
+    {{ if isset .Site.Params "socialicons" }}
+    <nav class="footer-social">
+        {{ range .Site.Params.SocialIcons }}
+        <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}">
+            <img class="svg-inject" src="/svg/icons/{{ .name | lower }}.svg" alt="{{ .name }}" width="18" height="18">
+        </a>
+        {{ end }}
+        <a href="/feed.xml" aria-label="RSS">
+            <img class="svg-inject" src="/svg/icons/rss.svg" alt="RSS" width="18" height="18">
+        </a>
+    </nav>
+    {{ end }}
+
+    {{/* Bottom links: lang switcher + privacy + copyright */}}
+    <nav class="footer-menu">
+        {{ range .Site.Menus.bottom }}
+        <a href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+        <span>&copy; {{ time.Now | time.Format "2006" }} {{ .Site.Params.AvatarAltText }}</span>
+    </nav>
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/gokarna-theme/gokarna-hugo">Gokarna</a>
+    </span>
+</footer>

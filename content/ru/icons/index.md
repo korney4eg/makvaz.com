@@ -1,0 +1,4 @@
+---
+title: "Иконки"
+type: "iconlist"
+---

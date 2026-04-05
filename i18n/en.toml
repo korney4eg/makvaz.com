@@ -1,0 +1,8 @@
+[posts]
+  other = "Blog"
+
+[older]
+  other = "Older"
+
+[newer]
+  other = "Newer"

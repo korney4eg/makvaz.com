@@ -1,0 +1,15 @@
+{{ $related := .Site.RegularPages.Related . | first 3 }}
+{{ with $related }}
+<div class="related-posts">
+    {{ if eq $.Site.Language.Lang "ru" }}
+    <h3>Вам также может понравиться</h3>
+    {{ else }}
+    <h3>You might also like</h3>
+    {{ end }}
+    {{ range . }}
+    <div class="post-title">
+        <h4><a href="{{ .Permalink }}" class="post-link">{{ .Title | markdownify }}</a></h4>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

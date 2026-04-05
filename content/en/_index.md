@@ -2,10 +2,14 @@
 title: "Aliaksei Karneyeu"
 ---
 
-Senior DevOps / Cloud SRE — 10+ years in infrastructure and platform engineering.
+Hi, I’m Aliaksei Karneyeu. I’ve been working with infrastructure and scalable systems for 10+ years.
 
-Currently at [OpenX](https://openx.com), working on GCP, Kubernetes, and reliability.
+My experience ranges from manually setting up applications for large-scale platforms to operating infrastructure in the AdTech industry.
 
-**Focus areas:** GCP · AWS · Kubernetes · Terraform · CI/CD · Observability
+Currently at OpenX, working with GCP, Kubernetes, and reliability. You can also check out my [CV](./cv/).
 
-**Certifications:** Google Cloud (DevOps, Network, Architect) · AWS (SysOps, Solutions Architect) · CKA
+**Main technologies**: GCP · AWS · Kubernetes · Terraform · CI/CD · Docker.
+
+Outside of work, I enjoy running, hiking, reading, films, and video games.
+
+This blog is mostly about technical topics I find interesting.

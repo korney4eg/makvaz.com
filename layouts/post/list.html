@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="container list-posts">
 
-    <h1 class="list-title">{{ i18n "posts" | default "Posts" }}</h1>
+    <h1 class="list-title">{{ i18n "posts" | default "Blog" }}</h1>
 
     {{ $paginator := .Paginate (where .Site.RegularPages "Params.layout" "post") }}
 
@@ -12,10 +12,10 @@
     {{ if gt $paginator.TotalPages 1 }}
     <nav class="pagination">
         {{ if $paginator.HasNext }}
-            <a class="pagination-item pagination-older" href="{{ $paginator.Next.URL }}">Older</a>
+            <a class="pagination-item pagination-older" href="{{ $paginator.Next.URL }}">{{ i18n "older" | default "Older" }}</a>
         {{ end }}
         {{ if $paginator.HasPrev }}
-            <a class="pagination-item pagination-newer" href="{{ $paginator.Prev.URL }}">Newer</a>
+            <a class="pagination-item pagination-newer" href="{{ $paginator.Prev.URL }}">{{ i18n "newer" | default "Newer" }}</a>
         {{ end }}
     </nav>
     {{ end }}

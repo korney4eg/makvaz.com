@@ -1,0 +1,8 @@
+[posts]
+  other = "Блог"
+
+[older]
+  other = "Старше"
+
+[newer]
+  other = "Новее"

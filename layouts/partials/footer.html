@@ -3,15 +3,6 @@
     {{ .Site.Params.CustomFooterHTML | safeHTML }}
     {{ end }}
 
-    {{/* Name + tagline */}}
-    {{ if .Site.Params.avatarURL }}
-    <div class="footer-identity">
-        <strong>{{ .Site.Params.AvatarAltText }}</strong>
-        {{ if .Site.Params.description }}
-        <span class="footer-tagline"> · {{ .Site.Params.description }}</span>
-        {{ end }}
-    </div>
-    {{ end }}
 
     {{/* Social icons */}}
     {{ if isset .Site.Params "socialicons" }}

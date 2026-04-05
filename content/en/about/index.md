@@ -13,8 +13,6 @@ Currently at [OpenX](https://openx.com), working on GCP, Kubernetes, and reliabi
 
 **Focus areas:** GCP · AWS · Kubernetes · Terraform · CI/CD · Observability
 
-**Certifications:** Google Cloud (DevOps, Network, Architect) · AWS (SysOps, Solutions Architect) · CKA
-
 ## Contact
 
 - **Email:** korneevayu (at) gmail.com

@@ -26,9 +26,9 @@ languages: ["Belarusian","English","French","Russian","Polish"]
 
 ## Certifications
 
-- Professional Cloud DevOps Engineer — [verify](https://www.credly.com/badges/0cf252af-98c3-4e71-97cb-e0f0f725ebca/public_url)
-- Professional Cloud Network Engineer — [verify](https://www.credly.com/badges/fdd15220-1b29-4c96-b3e6-24495ed0024f/public_url)
-- Professional Cloud Architect — [verify](https://www.credly.com/badges/9cccb471-5f8b-4cc4-812e-c8c816cccf0e/public_url)
+- Professional Cloud Network Engineer(Expires: June 12, 2028) — [verify](https://www.credly.com/badges/5aba4398-173a-479f-b512-ffbca16a4425)
+- Professional Cloud Architect(Expires: February 03, 2027) — [verify](https://www.credly.com/badges/9cccb471-5f8b-4cc4-812e-c8c816cccf0e)
+- Professional Cloud DevOps Engineer(Expired: February 12, 2026) — [verify](https://www.credly.com/badges/0cf252af-98c3-4e71-97cb-e0f0f725ebca/public_url)
 - AWS Certified SysOps Administrator – Associate — [verify](https://www.certmetrics.com/amazon/public/badge.aspx?i=3&t=c&d=2018-04-23&ci=AWS00490941)
 - AWS Certified Solutions Architect – Associate — [verify](https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2017-07-04&ci=AWS00226217)
 - CKA: Certified Kubernetes Administrator — [verify](https://www.youracclaim.com/badges/d20e7506-e328-48fa-b148-730cf3532878/linked_in_profile)
